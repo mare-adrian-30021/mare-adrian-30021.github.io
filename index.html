@@ -2,37 +2,86 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <title>MARE ADRIAN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CD - Mare Adrian</title>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
+      font-family: 'Georgia', serif;
+      background-color: #f3f3f3;
+      padding: 50px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      background-color: #f0f0f0;
-      font-family: Arial, sans-serif;
     }
 
-    .circle {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background-color: #4CAF50;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 24px;
+    .cd-box {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      max-width: 600px;
+    }
+
+    .cd-title {
+      font-size: 32px;
       font-weight: bold;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
       text-align: center;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .cd-artist {
+      font-size: 20px;
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .cd-description {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .cd-section {
+      margin-top: 30px;
+    }
+
+    .tracklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tracklist li {
+      margin-bottom: 8px;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-  <div class="circle">
-    MARE ADRIAN
+<div class="cd-box">
+  <div class="cd-title">MARE ADRIAN</div>
+  <div class="cd-artist">"Volumul 3: Achiziții și Ambiție"</div>
+
+  <div class="cd-description">
+    <strong>Gen:</strong> Dezvoltare profesională, Educație, Business<br>
+    <strong>Durată:</strong> 3 ani de facultate + 1 an experiență<br><br>
+
+    Acest CD descrie parcursul unui tânăr ambițios – Mare Adrian, student în anul 3 la UTCN,
+    care și-a combinat studiile cu munca reală în domeniul achizițiilor. De la teorie la practică,
+    fiecare piesă redă o etapă din evoluția lui profesională și personală.
   </div>
+
+  <div class="cd-section">
+    <h3>Tracklist:</h3>
+    <ul class="tracklist">
+      <li>1. Introducere în Inginerie</li>
+      <li>2. Primele Proiecte Studențești</li>
+      <li>3. Angajat ca Specialist Achiziții</li>
+      <li>4. Deadline-uri și Excel</li>
+      <li>5. Echilibrul Muncă-Studii</li>
+      <li>6. Planuri pentru Viitor</li>
+    </ul>
+  </div>
+</div>
 </body>
 </html>
