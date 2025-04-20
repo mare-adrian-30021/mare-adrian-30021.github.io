@@ -48,7 +48,7 @@
 <body>
 <header>
   <h1>PRACTIKER BILLA SRL</h1>
-  <p>Magazin de Scutece - Confort și Protecție pentru Toți</p>
+  <p>Magazin de Scule - Confort și Protecție pentru Toți</p>
 </header>
 <nav>
   <a href="#despre">Despre Noi</a>
@@ -66,6 +66,23 @@
 
       Ai nevoie de un sfat? Contactează-ne și stai de vorbă cu unul dintre experții noștri – oameni cu experiență reală în domeniu, gata să te ajute să alegi exact ce îți trebuie.</p>
   </section>
+  public static void main(String[] args) {
+  JFrame frame = new JFrame("Logo în dreapta");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setSize(400, 300);
+
+  // Încarcă imaginea
+  ImageIcon logo = new ImageIcon("C:\Users\User\Desktop\site prezentare\mare-adrian-30021.github.io\poze\logo.png"); // Schimbă cu calea ta
+
+  JLabel logoLabel = new JLabel(logo);
+
+  // Panel pentru poziționare în dreapta
+  JPanel panel = new JPanel(new BorderLayout());
+  panel.add(logoLabel, BorderLayout.EAST); // Așează în dreapta
+
+  frame.add(panel);
+  frame.setVisible(true);
+  }
 
 </main>
 <footer>
