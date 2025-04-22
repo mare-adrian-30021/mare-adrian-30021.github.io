@@ -1,81 +1,106 @@
+/* Stiluri generale */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #e6f0ff;
+    font-family: Arial, sans-serif;
 }
 
+/* Header și navigare */
 header {
     background-color: #005baa;
     color: white;
-    padding: 20px;
-    text-align: center;
+    position: fixed;
     width: 100%;
-    position: relative;
-    z-index: 2;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
 }
 
-nav {
-    background-color: #0074d9;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-    position: relative;
-    z-index: 2;
+header.scrolled {
+    height: 70px;
+    background-color: rgba(0, 91, 170, 0.95);
 }
 
-nav a {
+.header-logo {
+    height: 90%;
+    margin-right: 40px;
+    transition: all 0.3s ease;
+}
+
+.header-logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+header.scrolled .header-logo {
+    height: 80%;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
     color: white;
-    margin: 0 15px;
     text-decoration: none;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
+.nav-item i {
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+/* Main content */
 .main-background {
-    background-image: url('poze/background3.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    width: 100%;
-    min-height: calc(100vh - 150px);
-    padding: 20px 0;
-    position: relative;
-}
-
-main {
+    margin-top: 100px;
     padding: 20px;
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+    background-color: #f5f5f5;
 }
 
 section {
-    margin-bottom: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
     padding: 20px;
-    border-radius: 8px;
+    background: white;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 h2 {
     color: #005baa;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 28px;
 }
 
 .brands-section {
-    text-align: center;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 30px 0;
+    flex-wrap: wrap;
 }
 
 .brand-circle {
@@ -83,120 +108,294 @@ h2 {
     height: 200px;
     border-radius: 50%;
     background-color: white;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
     text-decoration: none;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
 }
 
-.brand-circle:hover {
-    transform: scale(1.1);
-}
-
-.brand-circle img {
-    width: 80%;
-    height: 80%;
-    border-radius: 50%;
-    object-fit: contain;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-    justify-items: center;
-}
-
-.service {
-    background-color: rgba(245, 245, 245, 0.95);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 400px;
-}
-
-.testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-    justify-items: center;
-}
-
-.testimonial {
-    background-color: rgba(245, 245, 245, 0.95);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    font-style: italic;
-    width: 90%;
-    max-width: 400px;
-}
-
-.testimonial cite {
-    display: block;
-    margin-top: 10px;
-    font-style: normal;
-    font-weight: bold;
-    text-align: right;
-}
-
-.contact-info {
-    background-color: rgba(245, 245, 245, 0.95);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin: 20px auto;
-    text-align: center;
-}
-
-.logo-container {
+.brands-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    gap: 40px;
+    padding: 30px 0;
+    flex-wrap: wrap;
 }
 
-.logo-container img {
-    max-height: 80px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 8px;
+.brand-circle {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-footer {
+.brand-circle img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.brand-circle:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Stiluri pentru more-brands */
+.more-brands {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+}
+
+.more-brands img {
+    display: none;
+}
+
+.dots-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
     background-color: #005baa;
-    color: white;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.9;
+}
+
+.more-text {
+    position: relative;
+    z-index: 2;
+    font-size: 18px;
+    font-weight: 500;
     text-align: center;
-    padding: 15px;
-    width: 100%;
-    margin-top: auto;
+    color: #005baa;
+    line-height: 1.4;
 }
 
 @media (max-width: 768px) {
-    .services-grid,
-    .testimonials {
-        grid-template-columns: 1fr;
+    .brand-circle {
+        width: 150px;
+        height: 150px;
     }
 
-    nav a {
-        display: inline-block;
-        margin: 5px 10px;
+    .brand-circle img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Services section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.service-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card i {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Testimonials section */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.testimonial-content {
+    margin-bottom: 20px;
+}
+
+.testimonial-content i {
+    font-size: 24px;
+    color: #005baa;
+    margin-bottom: 10px;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Contact section */
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-info {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item:hover {
+    background-color: #f8f9fa;
+}
+
+.contact-icon {
+    flex: 0 0 60px;
+    text-align: center;
+}
+
+.contact-icon i {
+    font-size: 28px;
+    color: #005baa;
+}
+
+.contact-text {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.contact-text h3 {
+    margin: 0 0 8px 0;
+    color: #005baa;
+    font-size: 18px;
+}
+
+.contact-text p {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header {
+        padding: 0 15px;
     }
 
-    .service,
-    .testimonial {
-        width: 100%;
+    .header-logo {
+        margin-right: 20px;
+    }
+
+    .nav-item {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .nav-item i {
+        font-size: 20px;
+    }
+
+    .brands-section {
+        gap: 20px;
     }
 
     .brand-circle {
         width: 150px;
         height: 150px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .dots-container {
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .more-text {
+        font-size: 14px;
+    }
+
+    .contact-item {
+        flex-direction: row;
+        padding: 12px;
+    }
+
+    .contact-icon {
+        flex: 0 0 40px;
+    }
+
+    .contact-icon i {
+        font-size: 24px;
+    }
+
+    .contact-text {
+        padding-left: 15px;
+    }
+
+    .contact-text h3 {
+        font-size: 16px;
+    }
+
+    .contact-text p {
+        font-size: 14px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 }
