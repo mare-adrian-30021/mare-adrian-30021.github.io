@@ -40,12 +40,12 @@ nav a:hover {
 }
 
 .main-background {
-    background-image: url('poze/background.png');
+    background-image: url('poze/background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     width: 100%;
-    min-height: calc(100vh - 150px); /* Ajustat pentru header și nav */
+    min-height: calc(100vh - 150px);
     padding: 20px 0;
     position: relative;
 }
@@ -73,7 +73,36 @@ h2 {
     margin-bottom: 20px;
 }
 
-.product-grid,
+.brands-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.brand-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+.brand-circle:hover {
+    transform: scale(1.1);
+}
+
+.brand-circle img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -82,7 +111,6 @@ h2 {
     justify-items: center;
 }
 
-.product-category,
 .service {
     background-color: rgba(245, 245, 245, 0.95);
     padding: 20px;
@@ -151,9 +179,7 @@ footer {
     margin-top: auto;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-    .product-grid,
     .services-grid,
     .testimonials {
         grid-template-columns: 1fr;
@@ -164,9 +190,13 @@ footer {
         margin: 5px 10px;
     }
 
-    .product-category,
     .service,
     .testimonial {
         width: 100%;
+    }
+
+    .brand-circle {
+        width: 150px;
+        height: 150px;
     }
 }

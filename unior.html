@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIOR Tools - Seturi de Scule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #005baa;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #005baa;
+        }
+
+        .product-info {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #005baa;
+            margin: 10px 0;
+        }
+
+        .add-to-cart {
+            background-color: #005baa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #004488;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #005baa;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>UNIOR - Seturi de Scule Profesionale</h1>
+</header>
+
+<a href="index.html" class="back-button">← Înapoi la pagina principală</a>
+
+<div class="container">
+    <div class="products-grid">
+        <!-- Produs 1 -->
+        <div class="product-card">
+            <img src="poze/set1.jpg" alt="Set Premium VDE" class="product-image">
+            <h3 class="product-title">Set of VDE tools, premium - 1018A</h3>
+            <p class="product-info">SKU: 628819</p>
+            <p class="product-info">Cantitate: 42 piese</p>
+            <p class="product-price">1085.56 €</p>
+            <button class="add-to-cart">Adaugă în coș</button>
+        </div>
+
+        <!-- Produs 2 -->
+        <div class="product-card">
+            <img src="poze/set2.jpg" alt="Set Plumber" class="product-image">
+            <h3 class="product-title">Set of tools for plumbers, basic - 1013C</h3>
+            <p class="product-info">SKU: 628822</p>
+            <p class="product-info">Cantitate: 29 piese</p>
+            <p class="product-price">858.90 €</p>
+            <button class="add-to-cart">Adaugă în coș</button>
+        </div>
+
+        <!-- Produs 3 -->
+        <div class="product-card">
+            <img src="poze/set3.jpg" alt="Set Scule" class="product-image">
+            <h3 class="product-title">Set scule - 1000AD</h3>
+            <p class="product-info">SKU: 611884</p>
+            <p class="product-info">Cantitate: 62 piese</p>
+            <p class="product-price">547.97 €</p>
+            <button class="add-to-cart">Adaugă în coș</button>
+        </div>
+
+        <!-- Produs 4 -->
+        <div class="product-card">
+            <img src="poze/set4.jpg" alt="Set VDE" class="product-image">
+            <h3 class="product-title">Set scule in geanta de scule - 971/3VDE</h3>
+            <p class="product-info">SKU: 612548</p>
+            <p class="product-info">Cantitate: 62 piese</p>
+            <p class="product-price">858.90 €</p>
+            <button class="add-to-cart">Adaugă în coș</button>
+        </div>
+
+        <!-- Poți adăuga mai multe produse folosind același format -->
+    </div>
+</div>
+</body>
+</html>
