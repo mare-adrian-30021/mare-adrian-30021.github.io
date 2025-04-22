@@ -5,6 +5,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRACTIKER BILLA SRL - Magazin de Scule</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    header {
+        background-color: #005baa;
+        color: white;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        height: 100px;
+    }
+
+    header.scrolled {
+        height: 60px;
+        background-color: rgba(0, 91, 170, 0.95);
+    }
+
+    header h1 {
+        transition: all 0.3s ease;
+        margin: 0;
+        padding: 20px 0 10px 0;
+        font-size: 24px;
+    }
+
+    header.scrolled h1 {
+        font-size: 18px;
+        padding: 10px 0 5px 0;
+    }
+
+    header p {
+        transition: all 0.3s ease;
+        margin: 0;
+        padding-bottom: 10px;
+        font-size: 16px;
+    }
+
+    header.scrolled p {
+        font-size: 14px;
+        padding-bottom: 5px;
+    }
+
+    /* Stiluri pentru bara de navigare principală */
+    nav {
+        position: fixed;
+        top: 100px;
+        width: 100%;
+        transition: all 0.3s ease;
+        z-index: 999;
+        background-color: #0074d9;
+    }
+
+    nav.scrolled {
+        top: 60px;
+    }
+
+    /* Stiluri pentru shortcuts */
+    .shortcuts {
+        position: fixed;
+        top: 140px; /* Sub nav */
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        transition: all 0.3s ease;
+        z-index: 998;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .shortcuts.scrolled {
+        top: 100px;
+    }
+
+    .shortcuts-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .shortcut-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 15px;
+        border-radius: 5px;
+        color: #005baa;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        font-weight: 500;
+    }
+
+    .shortcut-item:hover {
+        background-color: #e9ecef;
+        transform: translateY(-2px);
+    }
+
+    .shortcut-item i {
+        margin-right: 8px;
+        font-size: 18px;
+    }
+
+    .main-background {
+        margin-top: 200px; /* Ajustat pentru a face loc pentru toate barele fixe */
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .shortcuts-container {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .shortcut-item {
+            font-size: 14px;
+            padding: 6px 12px;
+        }
+    }
+  </style>
+
+  <script>
+    window.onscroll = function() {
+        const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        const shortcuts = document.querySelector('.shortcuts');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+            nav.classList.add('scrolled');
+            shortcuts.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+            nav.classList.remove('scrolled');
+            shortcuts.classList.remove('scrolled');
+        }
+    };
+  </script>
 </head>
 <body>
 <header>
@@ -19,6 +154,27 @@
   <a href="#testimoniale">Testimoniale</a>
   <a href="#contact">Contact</a>
 </nav>
+
+<div class="shortcuts">
+  <div class="shortcuts-container">
+    <a href="#despre" class="shortcut-item">
+      <i>📋</i> Despre Noi
+    </a>
+    <a href="#produse" class="shortcut-item">
+      <i>🛠️</i> Produse
+    </a>
+    <a href="#servicii" class="shortcut-item">
+      <i>🔧</i> Serviciile Noastre
+    </a>
+    <a href="#testimoniale" class="shortcut-item">
+      <i>💬</i> Testimoniale
+    </a>
+    <a href="#contact" class="shortcut-item">
+      <i>📞</i> Contact
+    </a>
+  </div>
+</div>
+
 
 <div class="main-background">
   <main>
