@@ -17,17 +17,14 @@
         height: 100px;
         display: flex;
         align-items: center;
-        padding: 0 30px;
-    }
-
-    header.scrolled {
-        height: 70px;
-        background-color: rgba(0, 91, 170, 0.95);
+        padding: 0 20px;
+        overflow: hidden; /* Adăugat pentru a controla overflow */
     }
 
     .header-logo {
         height: 90%;
-        margin-right: 40px;
+        min-width: 150px; /* Adăugat pentru a rezerva spațiu pentru logo */
+        margin-right: 20px;
         transition: all 0.3s ease;
     }
 
@@ -37,53 +34,73 @@
         object-fit: contain;
     }
 
-    header.scrolled .header-logo {
-        height: 80%;
-    }
-
     .nav-links {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         flex: 1;
         gap: 20px;
+        overflow-x: scroll; /* Forțăm scroll-ul să apară */
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 0;
+        margin: 0 -10px; /* Compensăm padding-ul header-ului */
+        mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
     }
 
-    .nav-item {
+    .nav-links::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    .nav-links::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+    }
+
+.nav-links {
         display: flex;
         align-items: center;
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
-        padding: 8px 15px;
-        border-radius: 5px;
-        transition: all 0.3s ease;
+        justify-content: center;
+        flex: 1;
+        gap: 20px;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 20px;
+        margin: 0 -10px;
+        scroll-behavior: smooth;
+        position: relative;  /* Pentru z-index */
+        z-index: 1001;      /* Valoare mai mare decât header (1000) */
     }
 
-    .nav-item:hover {
+    /* Stilizare scrollbar cu verde deschis */
+    .nav-links::-webkit-scrollbar {
+        width: 12px;         /* Mărit pentru mai multă vizibilitate */
+        height: 12px;
         background-color: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
+        z-index: 1002;
     }
 
-    .nav-item i {
-        font-size: 24px;
-        margin-right: 8px;
+    .nav-links::-webkit-scrollbar-track {
+        background: rgba(144, 238, 144, 0.2);  /* Verde deschis transparent pentru track */
+        border-radius: 6px;
+        z-index: 1002;
     }
 
-    .main-background {
-        margin-top: 100px;
-        padding: 20px;
+    .nav-links::-webkit-scrollbar-thumb {
+        background: #90EE90;  /* Verde deschis (LightGreen) */
+        border-radius: 6px;
+        border: 2px solid rgba(144, 238, 144, 0.8);
+        z-index: 1002;
     }
 
-    /* Stiluri pentru servicii */
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        padding: 20px 0;
+    .nav-links::-webkit-scrollbar-thumb:hover {
+        background: #98FB98;  /* Un verde și mai deschis la hover */
+        border: 2px solid #90EE90;
     }
-
     .service-card {
         background: white;
         padding: 30px;
@@ -284,12 +301,9 @@
             <span class="dot"></span>
             <span class="dot"></span>
           </div>
-          <span class="more-text">Vezi toate<br>brandurile</span>
+
         </a>
       </div>
-    </section>
-
-
     </section>
 
     <section id="servicii">
