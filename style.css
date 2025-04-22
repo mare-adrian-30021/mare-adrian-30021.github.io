@@ -75,51 +75,32 @@ header.scrolled .header-logo {
 .main-background {
     margin-top: 100px;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-image: url('poze/background3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 section {
     max-width: 1200px;
     margin: 0 auto 40px auto;
     padding: 20px;
-    background: white;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(3px);
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 h2 {
-    color: #005baa;
+    color: #004a8c;
     text-align: center;
     margin-bottom: 30px;
     font-size: 28px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-.brands-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    padding: 30px 0;
-    flex-wrap: wrap;
-}
-
-.brand-circle {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    text-decoration: none;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-}
-
+/* Brands section */
 .brands-section {
     display: flex;
     justify-content: center;
@@ -195,18 +176,6 @@ h2 {
     line-height: 1.4;
 }
 
-@media (max-width: 768px) {
-    .brand-circle {
-        width: 150px;
-        height: 150px;
-    }
-
-    .brand-circle img {
-        width: 150px;
-        height: 150px;
-    }
-}
-
 /* Services section */
 .services-grid {
     display: grid;
@@ -216,7 +185,7 @@ h2 {
 }
 
 .service-card {
-    background: white;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -242,7 +211,7 @@ h2 {
 }
 
 .testimonial-card {
-    background: white;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -272,7 +241,7 @@ h2 {
 }
 
 .contact-info {
-    background: white;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -285,6 +254,7 @@ h2 {
     padding: 15px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .contact-item:last-child {
@@ -292,7 +262,7 @@ h2 {
 }
 
 .contact-item:hover {
-    background-color: #f8f9fa;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .contact-icon {
@@ -312,15 +282,17 @@ h2 {
 
 .contact-text h3 {
     margin: 0 0 8px 0;
-    color: #005baa;
+    color: #004a8c;
     font-size: 18px;
+    font-weight: 600;
 }
 
 .contact-text p {
     margin: 0;
-    color: #333;
+    color: #000;
     font-size: 16px;
     line-height: 1.4;
+    font-weight: 500;
 }
 
 /* Responsive design */
@@ -342,27 +314,14 @@ h2 {
         font-size: 20px;
     }
 
-    .brands-section {
-        gap: 20px;
-    }
-
     .brand-circle {
         width: 150px;
         height: 150px;
     }
 
-    .dot {
-        width: 12px;
-        height: 12px;
-    }
-
-    .dots-container {
-        gap: 8px;
-        margin-bottom: 10px;
-    }
-
-    .more-text {
-        font-size: 14px;
+    .brand-circle img {
+        width: 150px;
+        height: 150px;
     }
 
     .contact-item {
