@@ -17,7 +17,7 @@ header {
     height: 100px;
     display: flex;
     align-items: center;
-    padding: 0 30px;
+    padding: 0 20px;  /* Redus de la 30px la 20px pentru a avea mai mult spațiu */
 }
 
 header.scrolled {
@@ -46,7 +46,7 @@ header.scrolled .header-logo {
     justify-content: space-between;
     align-items: center;
     flex: 1;
-    gap: 20px;
+    gap: 15px;  /* Redus de la 20px la 15px pentru a reduce spațiul dintre elemente */
 }
 
 .nav-item {
@@ -56,7 +56,7 @@ header.scrolled .header-logo {
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
-    padding: 8px 15px;
+    padding: 8px 12px;  /* Redus padding-ul lateral de la 15px la 12px */
     border-radius: 5px;
     transition: all 0.3s ease;
 }
