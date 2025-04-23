@@ -1,336 +1,161 @@
-/* Stiluri generale */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Header și navigare */
-header {
-    background-color: #005baa;
-    color: white;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;  /* Redus de la 30px la 20px pentru a avea mai mult spațiu */
-}
-
-header.scrolled {
-    height: 70px;
-    background-color: rgba(0, 91, 170, 0.95);
-}
-
-.header-logo {
-    height: 90%;
-    margin-right: 40px;
-    transition: all 0.3s ease;
-}
-
-.header-logo img {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-}
-
-header.scrolled .header-logo {
-    height: 80%;
-}
-
-.nav-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-    gap: 15px;  /* Redus de la 20px la 15px pentru a reduce spațiul dintre elemente */
-}
-
-.nav-item {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 8px 12px;  /* Redus padding-ul lateral de la 15px la 12px */
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.nav-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-}
-
-.nav-item i {
-    font-size: 24px;
-    margin-right: 8px;
-}
-
-/* Main content */
-.main-background {
-    margin-top: 100px;
-    padding: 20px;
-    background-image: url('pozehudac/background3.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-}
-
-section {
-    max-width: 1200px;
-    margin: 0 auto 40px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(3px);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-h2 {
-    color: #004a8c;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-}
-
-/* Brands section */
-.brands-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    padding: 30px 0;
-    flex-wrap: wrap;
-}
-
-.brand-circle {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.brand-circle img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-}
-
-.brand-circle:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-/* Stiluri pentru more-brands */
-.more-brands {
-    background: linear-gradient(145deg, #ffffff, #f0f0f0);
-}
-
-.more-brands img {
-    display: none;
-}
-
-.dots-container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
-}
-
-.dot {
-    width: 15px;
-    height: 15px;
-    background-color: #005baa;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.9;
-}
-
-.more-text {
-    position: relative;
-    z-index: 2;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    color: #005baa;
-    line-height: 1.4;
-}
-/* Portfolio section */
-.portfolio-title {
-    margin-top: 3rem;
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.portfolio-item {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    aspect-ratio: 16/9;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.portfolio-item:hover {
-    transform: translateY(-5px);
-}
-
-.portfolio-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.portfolio-item:hover img {
-    transform: scale(1.05);
-}
-
-.portfolio-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    padding: 1.5rem;
-    color: white;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.portfolio-item:hover .portfolio-overlay {
-    transform: translateY(0);
-}
-
-.portfolio-overlay h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.portfolio-overlay p {
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .portfolio-item {
-        aspect-ratio: 3/2;
-    }
-}
-/* Resetare și stiluri generale */
+/* Reset și stiluri de bază */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    background-color: #f0f2f5;
     color: #333;
+    line-height: 1.6;
 }
 
 /* Header și navigare */
 header {
-    background-color: rgba(44, 62, 80, 0.95);
+    background-color: #1a1a1a;
+    padding: 1rem;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 1rem 0;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .nav-links {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 2rem;
 }
 
 .nav-item {
     color: white;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
 
 .nav-item:hover {
-    background-color: #34495e;
+    background-color: #333;
     transform: translateY(-2px);
 }
+<style>
+    /* Stilurile existente rămân neschimbate */
 
+    /* Adaugă aceste stiluri noi pentru cercuri */
+    .brands-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        padding: 30px 0;
+        flex-wrap: wrap;
+    }
+
+     .brands-section {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           gap: 40px;
+           padding: 30px 0;
+       }
+
+       .brand-circle {
+           width: 200px;
+           height: 200px;
+           position: relative;
+           border-radius: 50%;
+           background: white;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+           transition: all 0.3s ease;
+           text-decoration: none;
+       }
+
+       .brand-circle img {
+           width: 200px;
+           height: 200px;
+           border-radius: 50%;
+           object-fit: cover;
+       }
+
+       .brand-circle:hover {
+           transform: translateY(-10px);
+           box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+       }
+
+       .more-brands {
+           background: linear-gradient(145deg, #ffffff, #f0f0f0);
+           flex-direction: column;
+       }
+
+       .more-brands img {
+           display: none;
+       }
+
+       .dots-container {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           gap: 12px;
+           margin-bottom: 15px;
+       }
+
+       .dot {
+           width: 15px;
+           height: 15px;
+           background-color: #005baa;
+           border-radius: 50%;
+           display: inline-block;
+           opacity: 0.9;
+       }
+
+       .more-text {
+           font-size: 18px;
+           font-weight: 500;
+           text-align: center;
+           color: #005baa;
+           line-height: 1.4;
+       }
+</style>
 /* Main content */
-.main-background {
-    margin-top: 4rem;
-    min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+.main-content {
+    padding-top: 4rem;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
                 url('poze/it-background.jpg') center/cover fixed;
-    padding: 2rem;
 }
 
+/* Secțiuni comune */
 section {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 h2 {
-    color: #2c3e50;
     text-align: center;
+    color: #1a1a1a;
     margin-bottom: 2rem;
     font-size: 2rem;
 }
 
-/* Profile section */
-.profile-container {
+/* Profil */
+.profile-section {
     display: flex;
-    align-items: center;
     gap: 3rem;
-    padding: 2rem;
-}
-
-.profile-image-container {
-    flex: 0 0 300px;
+    align-items: center;
 }
 
 .profile-image {
@@ -338,8 +163,8 @@ h2 {
     height: 300px;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid #2c3e50;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border: 5px solid #1a1a1a;
+    flex-shrink: 0;
 }
 
 .profile-image img {
@@ -348,397 +173,127 @@ h2 {
     object-fit: cover;
 }
 
-.profile-info {
-    flex: 1;
-}
-
 .profile-info h1 {
-    color: #2c3e50;
     font-size: 2.5rem;
+    color: #1a1a1a;
     margin-bottom: 1rem;
 }
 
-.profile-info h3 {
-    color: #34495e;
+.profile-info h2 {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    color: #666;
+    margin-bottom: 1rem;
+    text-align: left;
 }
 
 .profile-info p {
-    color: #666;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
 }
 
-/* Skills section */
+/* Abilități */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    padding: 1rem;
 }
 
 .skill-card {
-    background-color: rgba(248, 249, 250, 0.9);
+    background: white;
     padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .skill-card:hover {
     transform: translateY(-5px);
 }
 
-.skill-card i {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
 .skill-card h3 {
-    color: #2c3e50;
+    color: #1a1a1a;
     margin-bottom: 1rem;
 }
 
 .skill-card ul {
-    list-style: none;
-    text-align: left;
-    padding: 0 1rem;
-}
-
-.skill-card ul li {
-    margin: 0.5rem 0;
+    list-style-position: inside;
     color: #666;
 }
 
-/* Portfolio buttons */
-.portfolio-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
+.skill-card li {
+    margin-bottom: 0.5rem;
 }
 
-.portfolio-button {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    background-color: white;
-    border-radius: 50px;
+/* Proiecte */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.portfolio-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
     text-decoration: none;
     color: #333;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.portfolio-button:hover {
+.portfolio-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.button-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+.portfolio-image {
+    height: 200px;
     overflow: hidden;
-    flex-shrink: 0;
 }
 
-.button-logo img {
+.portfolio-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.button-content {
-    flex: 1;
+.portfolio-content {
+    padding: 1.5rem;
 }
 
-.button-content h3 {
-    color: #2c3e50;
+.portfolio-content h3 {
+    color: #1a1a1a;
     margin-bottom: 0.5rem;
 }
 
-.button-content p {
+.portfolio-content p {
     color: #666;
-    font-size: 0.9rem;
 }
 
-/* Contact section */
-.contact-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.contact-info {
-    background-color: rgba(248, 249, 250, 0.9);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Contact */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
     border-radius: 10px;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.contact-item:hover {
-    background-color: white;
+.contact-item i {
+    font-size: 2rem;
 }
 
-.contact-icon {
-    flex: 0 0 60px;
-    text-align: center;
-    font-size: 1.5rem;
-}
-
-.contact-text {
-    flex: 1;
-    padding-left: 1rem;
-}
-
-.contact-text h3 {
-    color: #2c3e50;
+.contact-item h3 {
+    color: #1a1a1a;
     margin-bottom: 0.5rem;
 }
 
-.contact-text p {
+.contact-item p {
     color: #666;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .profile-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .profile-image-container {
-        flex: 0 0 200px;
-    }
-
-    .profile-image {
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
-    }
-
-    .portfolio-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .portfolio-button {
-        width: 100%;
-    }
-
-    section {
-        padding: 1rem;
-    }
-
-    .contact-item {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .contact-icon {
-        margin-bottom: 1rem;
-    }
-
-    .contact-text {
-        padding-left: 0;
-    }
-}
-/* Services section */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px 0;
-}
-
-.service-card {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-}
-
-.service-card i {
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
-/* Testimonials section */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px 0;
-}
-
-.testimonial-card {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.testimonial-content {
-    margin-bottom: 20px;
-}
-
-.testimonial-content i {
-    font-size: 24px;
-    color: #005baa;
-    margin-bottom: 10px;
-}
-
-.testimonial-author {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-/* Contact section */
-.contact-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.contact-info {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-    padding: 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.contact-item:last-child {
-    margin-bottom: 0;
-}
-
-.contact-item:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-}
-
-.contact-icon {
-    flex: 0 0 60px;
-    text-align: center;
-}
-
-.contact-icon i {
-    font-size: 28px;
-    color: #005baa;
-}
-
-.contact-text {
-    flex: 1;
-    padding-left: 20px;
-}
-
-.contact-text h3 {
-    margin: 0 0 8px 0;
-    color: #004a8c;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.contact-text p {
-    margin: 0;
-    color: #000;
-    font-size: 16px;
-    line-height: 1.4;
-    font-weight: 500;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    header {
-        padding: 0 15px;
-    }
-
-    .header-logo {
-        margin-right: 20px;
-    }
-
-    .nav-item {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-
-    .nav-item i {
-        font-size: 20px;
-    }
-
-    .brand-circle {
-        width: 150px;
-        height: 150px;
-    }
-
-    .brand-circle img {
-        width: 150px;
-        height: 150px;
-    }
-
-    .contact-item {
-        flex-direction: row;
-        padding: 12px;
-    }
-
-    .contact-icon {
-        flex: 0 0 40px;
-    }
-
-    .contact-icon i {
-        font-size: 24px;
-    }
-
-    .contact-text {
-        padding-left: 15px;
-    }
-
-    .contact-text h3 {
-        font-size: 16px;
-    }
-
-    .contact-text p {
-        font-size: 14px;
-    }
-
-    section {
-        padding: 15px;
-    }
-
-    h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
 }

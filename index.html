@@ -2,172 +2,431 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mare Adrian - Student Automatică și Calculatoare</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mare Adrian - Portfolio</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    /* Header styles */
+    header {
+        background-color: #1a1a1a;
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .nav-item {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .nav-item:hover {
+        background-color: #333;
+    }
+
+    /* Main content */
+    .main-content {
+        padding-top: 4rem;
+        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                    url('poze/it-background.jpg') center/cover fixed;
+    }
+
+    section {
+        margin: 1rem;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 1.5rem;
+    }
+
+    /* Profile section */
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid #1a1a1a;
+    }
+
+    .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-info h1 {
+        font-size: 1.8rem;
+        color: #1a1a1a;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-info h2 {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-info p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Skills section */
+    .skills-section h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .skill-card {
+        background: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .skill-card h3 {
+        margin-bottom: 0.5rem;
+        color: #1a1a1a;
+    }
+
+    .skill-card ul {
+        list-style-position: inside;
+        padding-left: 0.5rem;
+    }
+
+    /* Projects section */
+    .projects-section h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .portfolio-item {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        text-decoration: none;
+        color: #333;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .portfolio-image {
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+    }
+
+    .portfolio-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .portfolio-content {
+        padding: 1rem;
+    }
+
+    .portfolio-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #1a1a1a;
+    }
+
+    .portfolio-content p {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    /* Contact section */
+    .contact-section h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .contact-item i {
+        font-size: 1.5rem;
+    }
+
+    /* Desktop styles */
+    @media (min-width: 768px) {
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .profile-section {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+        }
+
+        .skills-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .portfolio-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .contact-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+        .mobile-menu-btn {
+            display: block;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #1a1a1a;
+            padding: 1rem;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-item {
+            width: 100%;
+            text-align: center;
+        }
+
+        section {
+            margin: 1rem;
+            padding: 1rem;
+        }
+    }
+  </style>
 </head>
 <body>
 <header>
+  <button class="mobile-menu-btn">☰</button>
   <nav>
     <div class="nav-links">
-      <a href="#despre" class="nav-item">
-        <i>👨‍🎓</i>
-        <span>Despre Mine</span>
-      </a>
-      <a href="#abilitati" class="nav-item">
-        <i>💡</i>
-        <span>Abilități</span>
-      </a>
-      <a href="#proiecte" class="nav-item">
-        <i>💻</i>
-        <span>Proiecte</span>
-      </a>
-      <a href="#contact" class="nav-item">
-        <i>📞</i>
-        <span>Contact</span>
-      </a>
+      <a href="#despre" class="nav-item">Despre Mine</a>
+      <a href="#skills" class="nav-item">Abilități</a>
+      <a href="#projects" class="nav-item">Proiecte</a>
+      <a href="#contact" class="nav-item">Contact</a>
     </div>
   </nav>
 </header>
 
-<div class="main-background">
-  <main>
-    <section id="despre">
-      <div class="despre-content">
-        <div class="profile-container">
-          <div class="profile-image-container">
-            <div class="profile-image">
-              <!-- Aici vei adăuga poza ta -->
-              <img src="poze/profile.jpg" alt="Mare Adrian">
-            </div>
-          </div>
-          <div class="profile-info">
-            <h1>Mare Adrian</h1>
-            <h3>Student anul III - Automatică și Calculatoare</h3>
-            <p>Universitatea Tehnică din Cluj-Napoca</p>
-            <p>Sunt un student pasionat de tehnologie și inovație, cu focus pe dezvoltarea software și sisteme automate. Pe parcursul celor trei ani de studiu, mi-am dezvoltat atât cunoștințele teoretice cât și abilitățile practice în domeniul automaticii și calculatoarelor.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="main-content">
+  <section id="despre" class="profile-section">
+    <div class="profile-image">
+      <img src="poze/profile.jpg" alt="Mare Adrian">
+    </div>
+    <div class="profile-info">
+      <h1>Mare Adrian</h1>
+      <h2>Student anul III - Automatică și Calculatoare</h2>
+      <p>Universitatea Tehnică din Cluj-Napoca</p>
+      <p>Sunt un student pasionat de tehnologie și inovație, specializat în dezvoltarea software și sisteme automate. Pe parcursul celor trei ani de studiu, mi-am dezvoltat atât cunoștințele teoretice cât și abilitățile practice în domeniul automaticii și calculatoarelor.</p>
+    </div>
+  </section>
 
-    <section id="abilitati">
-      <h2>Abilități Dezvoltate</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <i>🔧</i>
-          <h3>Programare</h3>
-          <ul>
-            <li>C/C++</li>
-            <li>Python</li>
-            <li>Java</li>
-            <li>MATLAB</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <i>🌐</i>
-          <h3>Web Development</h3>
-          <ul>
-            <li>HTML/CSS</li>
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Node.js</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <i>🤖</i>
-          <h3>Automatică</h3>
-          <ul>
-            <li>Sisteme de Control</li>
-            <li>PLC Programming</li>
-            <li>Robotică</li>
-            <li>Senzori și Actuatori</li>
-          </ul>
-        </div>
+  <section id="skills" class="skills-section">
+    <h2>Abilități Dezvoltate</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Programare</h3>
+        <ul>
+          <li>C/C++</li>
+          <li>Python</li>
+          <li>Java</li>
+          <li>MATLAB</li>
+        </ul>
       </div>
-    </section>
+      <div class="skill-card">
+        <h3>Web Development</h3>
+        <ul>
+          <li>HTML/CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>Node.js</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Automatică</h3>
+        <ul>
+          <li>Sisteme de Control</li>
+          <li>PLC Programming</li>
+          <li>Robotică</li>
+          <li>Senzori și Actuatori</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <section id="proiecte">
-      <h2>Proiecte și Experiență</h2>
-      <div class="projects-container">
-        <div class="project-box">
-          <h3>Proiect Academic</h3>
-          <p>Sistem de Control Automat pentru o Seră Inteligentă</p>
-          <ul>
-            <li>Implementare sistem de monitorizare cu Arduino</li>
-            <li>Dezvoltare algoritmi de control</li>
-            <li>Interfață web pentru monitorizare</li>
-          </ul>
+  <section id="projects" class="projects-section">
+    <h2>Proiecte Realizate</h2>
+    <div class="portfolio-grid">
+      <a href="hudac.html" class="portfolio-item">
+        <div class="portfolio-image">
+          <img src="pozehudac/logo.png" alt="Site Frizerie">
         </div>
-        <div class="project-box">
-          <h3>Experiență Practică</h3>
-          <p>Internship - Companie de Automatizări</p>
-          <ul>
-            <li>Dezvoltare software pentru sisteme industriale</li>
-            <li>Programare PLC</li>
-            <li>Implementare soluții IoT</li>
-          </ul>
+        <div class="portfolio-content">
+          <h3>Site Frizerie</h3>
+          <p>Design modern pentru servicii de frizerie, cu sistem de programări și galerie de lucrări.</p>
         </div>
-      </div>
+      </a>
+      <a href="siteprb.html" class="portfolio-item">
+        <div class="portfolio-image">
+          <img src="poze/logo.png" alt="Magazin Online Scule">
+        </div>
+        <div class="portfolio-content">
+          <h3>Magazin Online Scule</h3>
+          <p>Platformă e-commerce pentru vânzarea de scule și echipamente profesionale.</p>
+        </div>
+      </a>
+    </div>
+  </section>
 
-      <h2 class="portfolio-title">Portofoliu Web Development</h2>
-      <div class="portfolio-buttons">
-        <a href="hudac.html" class="portfolio-button">
-          <div class="button-logo">
-            <img src="pozehudac/logo.png" alt="Logo Frizerie">
-          </div>
-          <div class="button-content">
-            <h3>Site Frizerie</h3>
-            <p>Design modern pentru servicii de frizerie</p>
-          </div>
-        </a>
-        <a href="siteprb.html" class="portfolio-button">
-          <div class="button-logo">
-            <img src="poze/logo.png" alt="Logo Scule">
-          </div>
-          <div class="button-content">
-            <h3>Magazin Online Scule</h3>
-            <p>E-commerce pentru unelte și echipamente</p>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-container">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i>📧</i>
-            </div>
-            <div class="contact-text">
-              <h3>Email</h3>
-              <p>mare.adrian@student.utcluj.ro</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i>💼</i>
-            </div>
-            <div class="contact-text">
-              <h3>LinkedIn</h3>
-              <p>linkedin.com/in/mare-adrian</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i>💻</i>
-            </div>
-            <div class="contact-text">
-              <h3>GitHub</h3>
-              <p>github.com/mare-adrian</p>
-            </div>
-          </div>
+  <section id="contact" class="contact-section">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <i>📧</i>
+        <div>
+          <h3>Email</h3>
+          <p>mare.adrian@student.utcluj.ro</p>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="contact-item">
+        <i>💼</i>
+        <div>
+          <h3>LinkedIn</h3>
+          <p>linkedin.com/in/mare-adrian</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i>💻</i>
+        <div>
+          <h3>GitHub</h3>
+          <p>github.com/mare-adrian</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+
+<script>
+  // Meniu mobil
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+
+  mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+  });
+
+  // Închide meniul la click pe link
+  document.querySelectorAll('.nav-item').forEach(link => {
+      link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+      });
+  });
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+          });
+      });
+  });
+</script>
 </body>
 </html>
