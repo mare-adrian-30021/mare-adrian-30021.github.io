@@ -3,339 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRACTIKER BILLA SRL - Magazin de Scule</title>
+  <title>Mare Adrian - Student Automatică și Calculatoare</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    header {
-        background-color: #005baa;
-        color: white;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        transition: all 0.3s ease;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        padding: 0 30px;
-    }
-
-    header.scrolled {
-        height: 70px;
-        background-color: rgba(0, 91, 170, 0.95);
-    }
-
-    .header-logo {
-        height: 90%;
-        margin-right: 40px;
-        transition: all 0.3s ease;
-    }
-
-    .header-logo img {
-        height: 100%;
-        width: auto;
-        object-fit: contain;
-    }
-
-    header.scrolled .header-logo {
-        height: 80%;
-    }
-
-    .nav-links {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex: 1;
-        gap: 20px;
-    }
-
-    .nav-item {
-        display: flex;
-        align-items: center;
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
-        padding: 8px 15px;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-    }
-
-    .nav-item:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
-    }
-
-    .nav-item i {
-        font-size: 24px;
-        margin-right: 8px;
-    }
-
-    .main-background {
-        margin-top: 100px;
-        padding: 20px;
-    }
-
-    /* Stiluri pentru servicii */
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        padding: 20px 0;
-    }
-
-    .service-card {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        text-align: center;
-        transition: transform 0.3s ease;
-    }
-
-    .service-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .service-card i {
-        font-size: 40px;
-        margin-bottom: 20px;
-    }
-
-    /* Stiluri pentru testimoniale */
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        padding: 20px 0;
-    }
-
-    .testimonial-card {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    /* Stiluri pentru contact */
-    .contact-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .contact-info {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 25px;
-        padding: 15px;
-        border-radius: 8px;
-        transition: background-color 0.3s ease;
-    }
-
-    .contact-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .contact-item:hover {
-        background-color: #f8f9fa;
-    }
-
-    .contact-icon {
-        flex: 0 0 60px;
-        text-align: center;
-    }
-
-    .contact-icon i {
-        font-size: 28px;
-        color: #005baa;
-    }
-
-    .contact-text {
-        flex: 1;
-        padding-left: 20px;
-    }
-
-    .contact-text h3 {
-        margin: 0 0 8px 0;
-        color: #005baa;
-        font-size: 18px;
-    }
-
-    .contact-text p {
-        margin: 0;
-        color: #333;
-        font-size: 16px;
-        line-height: 1.4;
-    }
-
-    @media (max-width: 768px) {
-        header {
-            padding: 0 15px;
-        }
-
-        .header-logo {
-            margin-right: 20px;
-        }
-
-        .nav-item {
-            font-size: 14px;
-            padding: 6px 10px;
-        }
-
-        .nav-item i {
-            font-size: 20px;
-        }
-
-        .contact-item {
-            flex-direction: row;
-            padding: 12px;
-        }
-
-        .contact-icon {
-            flex: 0 0 40px;
-        }
-
-        .contact-icon i {
-            font-size: 24px;
-        }
-
-        .contact-text {
-            padding-left: 15px;
-        }
-
-        .contact-text h3 {
-            font-size: 16px;
-        }
-
-        .contact-text p {
-            font-size: 14px;
-        }
-    }
-  </style>
-
-  <script>
-    window.onscroll = function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    };
-  </script>
 </head>
 <body>
 <header>
-  <div class="header-logo">
-    <img src="poze/logo.png" alt="Practiker Billa Logo">
-  </div>
-  <div class="nav-links">
-    <a href="#despre" class="nav-item">
-      <i>📋</i>
-      <span>Despre Noi</span>
-    </a>
-    <a href="#produse" class="nav-item">
-      <i>🛠️</i>
-      <span>Produse</span>
-    </a>
-    <a href="#servicii" class="nav-item">
-      <i>🔧</i>
-      <span>Servicii</span>
-    </a>
-    <a href="#testimoniale" class="nav-item">
-      <i>💬</i>
-      <span>Testimoniale</span>
-    </a>
-    <a href="#contact" class="nav-item">
-      <i>📞</i>
-      <span>Contact</span>
-    </a>
-  </div>
+  <nav>
+    <div class="nav-links">
+      <a href="#despre" class="nav-item">
+        <i>👨‍🎓</i>
+        <span>Despre Mine</span>
+      </a>
+      <a href="#abilitati" class="nav-item">
+        <i>💡</i>
+        <span>Abilități</span>
+      </a>
+      <a href="#proiecte" class="nav-item">
+        <i>💻</i>
+        <span>Proiecte</span>
+      </a>
+      <a href="#contact" class="nav-item">
+        <i>📞</i>
+        <span>Contact</span>
+      </a>
+    </div>
+  </nav>
 </header>
 
 <div class="main-background">
   <main>
     <section id="despre">
-      <h2>Despre Noi</h2>
-      <p>Practicker Billa – Unelte și Echipamente Industriale din 2005</p>
-      <p>La Practicker Billa, găsești tot ce ai nevoie pentru munca serioasă: echipamente, unelte și accesorii esențiale folosite în fabrici, ateliere sau orice mediu industrial. Din 2005, furnizăm clienților noștri produse de calitate, testate și recomandate de profesioniști.</p>
-    </section>
-
-    <section id="produse">
-      <h2>Produse Noastre</h2>
-      <div class="brands-section">
-        <a href="unior.html" class="brand-circle">
-          <img src="poze/unior-logo.png" alt="UNIOR Logo">
-        </a>
-        <a href="yato.html" class="brand-circle">
-          <img src="poze/yato-logo.png" alt="YATO Logo">
-        </a>
-        <a href="toate-brandurile.html" class="brand-circle more-brands">
-          <div class="dots-container">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+      <div class="despre-content">
+        <div class="profile-container">
+          <div class="profile-image-container">
+            <div class="profile-image">
+              <!-- Aici vei adăuga poza ta -->
+              <img src="poze/profile.jpg" alt="Mare Adrian">
+            </div>
           </div>
-          <span class="more-text">Vezi toate<br>brandurile</span>
-        </a>
+          <div class="profile-info">
+            <h1>Mare Adrian</h1>
+            <h3>Student anul III - Automatică și Calculatoare</h3>
+            <p>Universitatea Tehnică din Cluj-Napoca</p>
+            <p>Sunt un student pasionat de tehnologie și inovație, cu focus pe dezvoltarea software și sisteme automate. Pe parcursul celor trei ani de studiu, mi-am dezvoltat atât cunoștințele teoretice cât și abilitățile practice în domeniul automaticii și calculatoarelor.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    </section>
-
-    <section id="servicii">
-      <h2>Serviciile Noastre</h2>
-      <div class="services-grid">
-        <div class="service-card">
+    <section id="abilitati">
+      <h2>Abilități Dezvoltate</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
           <i>🔧</i>
-          <h3>Consultanță Tehnică</h3>
-          <p>Experții noștri vă oferă suport în alegerea echipamentelor potrivite pentru nevoile dumneavoastră.</p>
+          <h3>Programare</h3>
+          <ul>
+            <li>C/C++</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>MATLAB</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <i>🚚</i>
-          <h3>Livrare Rapidă</h3>
-          <p>Asigurăm livrare promptă în toată țara pentru comenzile dumneavoastră.</p>
+        <div class="skill-card">
+          <i>🌐</i>
+          <h3>Web Development</h3>
+          <ul>
+            <li>HTML/CSS</li>
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>Node.js</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <i>🛠️</i>
-          <h3>Suport Post-Vânzare</h3>
-          <p>Oferim asistență tehnică și suport pentru toate produsele achiziționate de la noi.</p>
+        <div class="skill-card">
+          <i>🤖</i>
+          <h3>Automatică</h3>
+          <ul>
+            <li>Sisteme de Control</li>
+            <li>PLC Programming</li>
+            <li>Robotică</li>
+            <li>Senzori și Actuatori</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="testimoniale">
-      <h2>Ce Spun Clienții Noștri</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <i>💬</i>
-            <p>"Calitatea produselor și expertiza echipei sunt remarcabile. Recomand cu încredere!"</p>
-          </div>
-          <div class="testimonial-author">
-            <strong>Ioan P.</strong>
-            <span>Manager Producție</span>
-          </div>
+    <section id="proiecte">
+      <h2>Proiecte și Experiență</h2>
+      <div class="projects-container">
+        <div class="project-box">
+          <h3>Proiect Academic</h3>
+          <p>Sistem de Control Automat pentru o Seră Inteligentă</p>
+          <ul>
+            <li>Implementare sistem de monitorizare cu Arduino</li>
+            <li>Dezvoltare algoritmi de control</li>
+            <li>Interfață web pentru monitorizare</li>
+          </ul>
         </div>
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <i>💬</i>
-            <p>"Cel mai bun raport calitate-preț pentru unelte industriale din zonă."</p>
-          </div>
-          <div class="testimonial-author">
-            <strong>Maria D.</strong>
-            <span>Tehnician</span>
-          </div>
+        <div class="project-box">
+          <h3>Experiență Practică</h3>
+          <p>Internship - Companie de Automatizări</p>
+          <ul>
+            <li>Dezvoltare software pentru sisteme industriale</li>
+            <li>Programare PLC</li>
+            <li>Implementare soluții IoT</li>
+          </ul>
         </div>
+      </div>
+
+      <h2 class="portfolio-title">Portofoliu Web Development</h2>
+      <div class="portfolio-buttons">
+        <a href="hudac.html" class="portfolio-button">
+          <div class="button-logo">
+            <img src="pozehudac/logo.png" alt="Logo Frizerie">
+          </div>
+          <div class="button-content">
+            <h3>Site Frizerie</h3>
+            <p>Design modern pentru servicii de frizerie</p>
+          </div>
+        </a>
+        <a href="siteprb.html" class="portfolio-button">
+          <div class="button-logo">
+            <img src="poze/logo.png" alt="Logo Scule">
+          </div>
+          <div class="button-content">
+            <h3>Magazin Online Scule</h3>
+            <p>E-commerce pentru unelte și echipamente</p>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -345,38 +139,29 @@
         <div class="contact-info">
           <div class="contact-item">
             <div class="contact-icon">
-              <i>📍</i>
-            </div>
-            <div class="contact-text">
-              <h3>Adresă</h3>
-              <p>Bulevardul Closca nr.44, Satu Mare, Satu Mare</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i>📞</i>
-            </div>
-            <div class="contact-text">
-              <h3>Telefon</h3>
-              <p>021.123.4567</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i>✉️</i>
+              <i>📧</i>
             </div>
             <div class="contact-text">
               <h3>Email</h3>
-              <p>prbillaclosca@gmail.com</p>
+              <p>mare.adrian@student.utcluj.ro</p>
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-icon">
-              <i>🕒</i>
+              <i>💼</i>
             </div>
             <div class="contact-text">
-              <h3>Program</h3>
-              <p>Luni-Vineri: 09:00-18:00</p>
+              <h3>LinkedIn</h3>
+              <p>linkedin.com/in/mare-adrian</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i>💻</i>
+            </div>
+            <div class="contact-text">
+              <h3>GitHub</h3>
+              <p>github.com/mare-adrian</p>
             </div>
           </div>
         </div>

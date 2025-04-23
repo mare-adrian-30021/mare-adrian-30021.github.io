@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luca Barbershop - Frizerie Premium</title>
+  <style>
+    :root {
+        --primary-black: #1a1a1a;
+        --secondary-black: #2d2d2d;
+        --accent-gold: #c6a55c;
+        --text-white: #ffffff;
+        --text-gray: #cccccc;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background-color: var(--primary-black);
+        color: var(--text-white);
+        line-height: 1.6;
+    }
+
+    header {
+        background-color: var(--secondary-black);
+        padding: 0.5rem 5%;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo-image {
+        height: 80px;
+        width: auto;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--accent-gold);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: var(--text-white);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--accent-gold);
+    }
+
+    .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                    url('pozehudac/background.jpg') center 30% / cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 5%;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: var(--accent-gold);
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        color: var(--text-gray);
+        margin-bottom: 2rem;
+    }
+
+    .services {
+        padding: 5rem 5%;
+        background-color: var(--secondary-black);
+    }
+
+    .section-title {
+        text-align: center;
+        color: var(--accent-gold);
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .service-card {
+        background-color: var(--primary-black);
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .service-card h3 {
+        color: var(--accent-gold);
+        margin: 1rem 0;
+    }
+
+    .about {
+        padding: 5rem 5%;
+    }
+
+    .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .about-image {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .about-content h2 {
+        color: var(--accent-gold);
+        margin-bottom: 1.5rem;
+    }
+
+    .contact {
+        padding: 5rem 5%;
+        background-color: var(--secondary-black);
+    }
+
+    .contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-info {
+        line-height: 2;
+    }
+
+    .contact-info h3 {
+        color: var(--accent-gold);
+        margin-bottom: 1rem;
+    }
+
+    .map-container {
+        width: 100%;
+        height: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+        display: none; /* Ascunde harta implicit */
+        margin-top: 2rem;
+    }
+
+    .map-container.active {
+        display: block; /* Afișează harta când are clasa active */
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: var(--accent-gold);
+        color: var(--primary-black);
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: transform 0.3s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+    }
+
+    .location-btn {
+        display: block;
+        margin: 0 auto;
+    }
+
+    footer {
+        background-color: var(--primary-black);
+        padding: 2rem 5%;
+        text-align: center;
+        color: var(--text-gray);
+    }
+
+    @media (max-width: 768px) {
+        .about-container {
+            grid-template-columns: 1fr;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+        }
+
+        .nav-links {
+            display: none;
+        }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo-container">
+      <img src="pozehudac/logo.png" alt="Luca Barbershop Logo" class="logo-image">
+      <div class="logo">Luca Barbershop</div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Acasă</a>
+      <a href="#services">Servicii</a>
+      <a href="#about">Despre</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Luca Barbershop</h1>
+    <p>Artă și profesionalism în fiecare tunsoare</p>
+    <a href="#contact" class="btn">Programează-te acum</a>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <h2 class="section-title">Serviciile Mele</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Tuns Bărbătesc</h3>
+      <p>Tunsori moderne sau clasice, adaptate stilului tău personal</p>
+      <p class="price">de la 50 RON</p>
+    </div>
+    <div class="service-card">
+      <h3>Aranjat Barbă</h3>
+      <p>Îngrijire completă a bărbii, conturare și styling profesional</p>
+      <p class="price">de la 35 RON</p>
+    </div>
+    <div class="service-card">
+      <h3>Bărbierit Tradițional</h3>
+      <p>Bărbierit cu briciul și tratament facial relaxant</p>
+      <p class="price">de la 45 RON</p>
+    </div>
+    <div class="service-card">
+      <h3>Pachet Complet</h3>
+      <p>Tuns, aranjat barbă și îngrijire facială</p>
+      <p class="price">de la 120 RON</p>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-container">
+    <img src="pozehudac/luca.jpg" alt="Luca - Master Barber" class="about-image">
+    <div class="about-content">
+      <h2>Despre Mine</h2>
+      <p>Cu peste 10 ani de experiență în arta frizeriei, sunt dedicat să ofer clienților mei cele mai bune servicii și cele mai moderne stiluri. Fiecare client care îmi pășește în salon primește atenție personalizată și un look perfect adaptat personalității sale.</p>
+      <p>Specializat în tunsori moderne și clasice, precum și în îngrijirea bărbii, folosesc cele mai bune tehnici și produse pentru a asigura rezultate excepționale de fiecare dată.</p>
+      <a href="#contact" class="btn" style="margin-top: 1rem;">Contactează-mă</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-container">
+    <h2 class="section-title">Contact & Program</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Program</h3>
+        <p>Luni - Vineri: 10:00 - 20:00</p>
+        <p>Sâmbătă: 10:00 - 18:00</p>
+        <p>Duminică: Închis</p>
+      </div>
+      <div class="contact-info">
+        <h3>Contact</h3>
+        <p>Telefon: 0722 123 456</p>
+        <p>Email: contact@lucabarbershop.ro</p>
+        <p>Adresă: Strada Exemplu nr. 123, București</p>
+      </div>
+    </div>
+
+    <button class="btn location-btn" onclick="toggleMap()">Vezi Locația pe Hartă</button>
+
+    <div class="map-container" id="mapContainer">
+      <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.8485613461455!2d26.1019453!3d44.4267674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4470220b8f%3A0x10c06031d35785cf!2sUniversitatea%20din%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1650000000000!5m2!1sro!2sro"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2024 Luca Barbershop. Toate drepturile rezervate.</p>
+</footer>
+
+<script>
+  function toggleMap() {
+      const mapContainer = document.getElementById('mapContainer');
+      const button = document.querySelector('.location-btn');
+
+      if (mapContainer.classList.contains('active')) {
+          mapContainer.classList.remove('active');
+          button.textContent = 'Vezi Locația pe Hartă';
+      } else {
+          mapContainer.classList.add('active');
+          button.textContent = 'Ascunde Harta';
+      }
+  }
+</script>
+</body>
+</html>
