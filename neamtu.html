@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neamțu - Fruits & Vegetables</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #e8f5e9;
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+    }
+
+    .header {
+        background-color: #2e7d32;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+        height: 60px;
+        border-radius: 5px;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        transition: all 0.3s;
+    }
+
+    .contact-info {
+        color: white;
+        text-align: right;
+        line-height: 1.5;
+    }
+
+    .contact-info a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .slogan {
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 1rem;
+        background-color: #2e7d32;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .slideshow-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+    }
+
+    .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .slide.active {
+        opacity: 1;
+    }
+
+    .about-section {
+        padding: 3rem;
+        background-color: white;
+        margin: 2rem auto;
+        max-width: 1200px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-section h2 {
+        color: #2e7d32;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .about-section h3 {
+        color: #2e7d32;
+        margin: 2rem 0 1rem 0;
+        font-size: 1.5rem;
+    }
+
+    .about-section p {
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .feature-card {
+        background-color: #f5f5f5;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+        color: #2e7d32;
+        margin-bottom: 1rem;
+    }
+
+    .offers-section {
+        padding: 2rem;
+        margin-top: 2rem;
+    }
+
+    .offers-title {
+        text-align: center;
+        color: #2e7d32;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .offers-container {
+        position: relative;
+        padding: 0 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .offer-box {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .offer-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        position: relative;
+    }
+
+    .offer-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(0deg, rgba(46, 125, 50, 0.1), transparent);
+    }
+
+    .offer-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        opacity: 0;
+    }
+
+    .offer-image img.loaded {
+        opacity: 1;
+    }
+
+    .offer-box:hover {
+        transform: translateY(-5px);
+    }
+
+    .offer-box:hover .offer-image img {
+        transform: scale(1.1);
+    }
+
+    .offer-box.center {
+        width: 400px;
+        min-height: 350px;
+    }
+
+    .offer-box.side {
+        width: 300px;
+        min-height: 300px;
+    }
+
+    .offer-box h3 {
+        color: #2e7d32;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+    }
+
+    .offer-description {
+        color: #666;
+        font-size: 0.9rem;
+        flex-grow: 1;
+    }
+
+    .offer-price {
+        color: #2e7d32;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: auto;
+    }
+
+    .nav-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #2e7d32;
+        color: white;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        z-index: 100;
+        transition: all 0.3s ease;
+    }
+
+    .nav-arrow:hover {
+        background-color: #1b5e20;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav-arrow.prev {
+        left: -50px;
+    }
+
+    .nav-arrow.next {
+        right: -50px;
+    }
+
+    footer {
+        background-color: #2e7d32;
+        color: white;
+        padding: 2rem;
+        margin-top: 3rem;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .footer-section {
+        margin: 1rem;
+        min-width: 250px;
+    }
+
+    .footer-section h3 {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.5rem;
+    }
+
+    .social-icons {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .social-icons a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+
+    .social-icons a:hover {
+        transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex;
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #2e7d32;
+            flex-direction: column;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .contact-info {
+            display: none;
+        }
+
+        .about-section {
+            padding: 1.5rem;
+            margin: 1rem;
+        }
+
+        .offer-box.center,
+        .offer-box.side {
+            width: 90%;
+            min-height: auto;
+        }
+
+        .offers-container {
+            padding: 0 20px;
+        }
+
+        .nav-arrow.prev {
+            left: -10px;
+        }
+
+        .nav-arrow.next {
+            right: -10px;
+        }
+
+        .slideshow-container {
+            height: 300px;
+        }
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <img src="pozeneamtu/logo.jpg" alt="Neamțu Logo" class="logo">
+  <nav class="nav-menu">
+    <a href="#oferte">Oferte</a>
+    <a href="#despre">Despre Noi</a>
+    <a href="#contact">Contact</a>
+    <a href="#locatie">Locație</a>
+  </nav>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="contact-info">
+    <p>📞 <a href="tel:0757182892">0757 182 892</a></p>
+    <p>📍 Str. Careiului C13, Satu Mare</p>
+  </div>
+</header>
+
+<div class="slogan">
+  Descoperă Gustul Autentic al Naturii la Neamțu - Fruits & Vegetables! 🍅
+</div>
+
+<div class="slideshow-container">
+  <div class="slide active">
+    <img src="pozeneamtu/1.jpg" alt="Slide 1">
+  </div>
+  <div class="slide">
+    <img src="pozeneamtu/2.jpg" alt="Slide 2">
+  </div>
+  <div class="slide">
+    <img src="pozeneamtu/3.jpg" alt="Slide 3">
+  </div>
+  <div class="slide">
+    <img src="pozeneamtu/4.jpg" alt="Slide 4">
+  </div>
+</div>
+
+<section class="about-section" id="despre">
+  <h2>Despre Neamțu Fruits</h2>
+  <p>Aprozarul Neamțu Fruits din cartierul Micro 16, Satu Mare, este o destinație de încredere pentru cei care caută fructe și legume proaspete, direct de la producători locali. Situat într-o zonă accesibilă, acest aprozar se remarcă prin calitatea superioară a produselor oferite și prin atenția acordată fiecărui client.</p>
+
+  <h3>Ce găsești la Neamțu Fruits</h3>
+  <div class="features-grid">
+    <div class="feature-card">
+      <h3>Fructe și legume proaspete</h3>
+      <p>De la mere crocante și pere zemoase până la roșii coapte și castraveți crocanți, toate produsele sunt atent selecționate pentru a asigura prospețimea și gustul autentic.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Produse locale și de sezon</h3>
+      <p>Aprozarul colaborează cu producători locali, oferind astfel produse de sezon, cultivate cu grijă și fără substanțe nocive.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Diversitate și calitate</h3>
+      <p>Pe lângă fructe și legume, poți găsi și verdețuri proaspete, leguminoase și alte produse necesare pentru o alimentație sănătoasă.</p>
+    </div>
+  </div>
+
+  <h3>De ce să alegi Neamțu Fruits</h3>
+  <ul>
+    <li>Calitate garantată: Produsele sunt atent selecționate pentru a asigura prospețimea și gustul autentic.</li>
+    <li>Suport pentru producătorii locali: Prin achizițiile tale, susții agricultura locală și economia regională.</li>
+    <li>Serviciu prietenos: Personalul este mereu gata să te ajute cu sfaturi și recomandări pentru cele mai bune alegeri.</li>
+  </ul>
+</section>
+
+<section class="offers-section" id="oferte">
+  <h2 class="offers-title">Ofertele Zilei</h2>
+  <div class="offers-container">
+    <button class="nav-arrow prev">&#8592;</button>
+    <div class="offer-box side">
+      <div class="offer-image">
+        <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?q=80&w=500&auto=format&fit=crop"
+             alt="Roșii Cherry"
+             loading="lazy">
+      </div>
+      <h3>Roșii Cherry</h3>
+      <p class="offer-description">Roșii cherry dulci și suculente, perfecte pentru salate</p>
+      <p class="offer-price">8.99 lei/kg</p>
+    </div>
+    <div class="offer-box center">
+      <div class="offer-image">
+        <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?q=80&w=500&auto=format&fit=crop"
+             alt="Coș Mixt"
+             loading="lazy">
+      </div>
+      <h3>Oferta Specială - Coș Mixt</h3>
+      <p class="offer-description">Coș cu fructe și legume proaspete de sezon</p>
+      <p class="offer-price">99.99 lei</p>
+    </div>
+    <div class="offer-box side">
+      <div class="offer-image">
+        <img src="https://images.unsplash.com/photo-1630563451961-ac2ff27616ab?q=80&w=500&auto=format&fit=crop"
+             alt="Mere Gala"
+             loading="lazy">
+      </div>
+      <h3>Mere Gala</h3>
+      <p class="offer-description">Mere dulci și crocante din livezile locale</p>
+      <p class="offer-price">5.99 lei/kg</p>
+    </div>
+    <div class="offer-box side">
+      <div class="offer-image">
+        <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=500&auto=format&fit=crop"
+             alt="Cartofi Noi"
+             loading="lazy">
+      </div>
+      <h3>Cartofi Noi</h3>
+      <p class="offer-description">Cartofi proaspeți recoltați</p>
+      <p class="offer-price">3.99 lei/kg</p>
+    </div>
+    <div class="offer-box side">
+      <div class="offer-image">
+        <img src="https://images.unsplash.com/photo-1618512496248-a03c50604036?q=80&w=500&auto=format&fit=crop"
+             alt="Ceapă Roșie"
+             loading="lazy">
+      </div>
+      <h3>Ceapă Roșie</h3>
+      <p class="offer-description">Ceapă roșie dulce și aromată</p>
+      <p class="offer-price">4.50 lei/kg</p>
+    </div>
+    <button class="nav-arrow next">&#8594;</button>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p>📞 0757 182 892</p>
+      <p>📍 Str. Careiului C13, Satu Mare</p>
+      <p>Cartier Micro 16</p>
+    </div>
+    <div class="footer-section">
+      <h3>Program</h3>
+      <p>Luni - Vineri: 8:00 - 20:00</p>
+      <p>Sâmbătă: 8:00 - 18:00</p>
+      <p>Duminică: 8:00 - 16:00</p>
+    </div>
+    <div class="footer-section">
+      <h3>Urmărește-ne</h3>
+      <div class="social-icons">
+        <a href="#" title="Facebook">📱</a>
+        <a href="#" title="Instagram">📸</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Slideshow functionality
+  function startSlideshow() {
+      const slides = document.querySelectorAll('.slide');
+      let currentSlide = 0;
+
+      setInterval(() => {
+          slides[currentSlide].classList.remove('active');
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].classList.add('active');
+      }, 5000);
+  }
+
+  // Offers navigation
+  const offerBoxes = Array.from(document.querySelectorAll('.offer-box'));
+  let currentOfferSet = 0;
+  const prevButton = document.querySelector('.nav-arrow.prev');
+  const nextButton = document.querySelector('.nav-arrow.next');
+
+  function updateOfferVisibility() {
+      offerBoxes.forEach((box, index) => {
+          if (index >= currentOfferSet && index < currentOfferSet + 3) {
+              box.style.display = 'block';
+          } else {
+              box.style.display = 'none';
+          }
+      });
+
+      prevButton.style.opacity = currentOfferSet === 0 ? '0.5' : '1';
+      nextButton.style.opacity = currentOfferSet >= offerBoxes.length - 3 ? '0.5' : '1';
+  }
+
+  prevButton.addEventListener('click', () => {
+      if (currentOfferSet > 0) {
+          currentOfferSet--;
+          updateOfferVisibility();
+      }
+  });
+
+  nextButton.addEventListener('click', () => {
+      if (currentOfferSet < offerBoxes.length - 3) {
+          currentOfferSet++;
+          updateOfferVisibility();
+      }
+  });
+
+  // Hamburger menu functionality
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+
+  hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+      });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+      }
+  });
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+          });
+      });
+  });
+
+  // Image loading
+  document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.offer-image img');
+
+      images.forEach(img => {
+          img.addEventListener('load', function() {
+              this.classList.add('loaded');
+          });
+
+          img.addEventListener('error', function() {
+              this.src = 'https://via.placeholder.com/500x500?text=Imagine+Indisponibilă';
+          });
+      });
+  });
+
+  // Initialize functionality
+  window.addEventListener('load', () => {
+      startSlideshow();
+      updateOfferVisibility();
+  });
+</script>
+</body>
+</html>
