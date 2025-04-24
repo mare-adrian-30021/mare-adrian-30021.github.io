@@ -127,6 +127,199 @@ nav {
            line-height: 1.4;
        }
 </style>
+/* ... stilurile existente ... */
+
+/* Buton Adaugă în Coș */
+.add-to-cart-btn {
+    background-color: #4CAF50; /* Verde mai intens */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 1rem;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #367c39;
+    transform: scale(1.05);
+}
+
+.add-to-cart-btn:active {
+     transform: scale(1);
+}
+
+/* Header - zona dreapta */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Pictograma Coș */
+.cart-icon-container {
+    position: relative;
+}
+
+.cart-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: relative;
+    padding: 5px;
+}
+
+#cartCount {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: #ff4500; /* Portocaliu */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Modal Coș */
+.cart-modal {
+    display: none; /* Ascuns implicit */
+    position: fixed;
+    z-index: 1001; /* Deasupra headerului */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundal semi-transparent */
+    padding-top: 60px;
+}
+
+.cart-modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.cart-close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-close-btn:hover,
+.cart-close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.cart-modal h2 {
+    text-align: center;
+    color: #2e7d32;
+    margin-bottom: 1.5rem;
+}
+
+#cartItemsContainer {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    border-bottom: 1px dashed #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.cart-item-details span {
+    display: block;
+}
+
+.cart-item-price {
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.cart-remove-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.cart-empty-message {
+    text-align: center;
+    color: #888;
+    padding: 2rem;
+}
+
+.cart-summary {
+    text-align: right;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.checkout-btn {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.checkout-btn:hover {
+    background-color: #1b5e20;
+}
+
+/* Responsive pentru modal */
+@media (max-width: 768px) {
+    .cart-modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+     .header-right {
+         gap: 1rem;
+     }
+}
 /* Main content */
 .main-content {
     padding-top: 4rem;

@@ -3,151 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNIOR Tools - Seturi de Scule</title>
+    <title>Unior - Scule Profesionale</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        header {
-            background-color: #005baa;
-            color: white;
-            padding: 20px;
-            text-align: center;
+            background-color: #e6f3ff; /* Fundal albastru foarte deschis */
+            background-image: linear-gradient(135deg, #e6f3ff 0%, #f0f8ff 100%);
+            color: #333;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
-        .products-grid {
+        header {
+            background-color: #003366; /* Albastru închis pentru header */
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            padding: 20px;
+            margin-top: 20px;
         }
 
         .product-card {
-            background: white;
+            background-color: white;
+            border: 1px solid #ddd;
             border-radius: 8px;
             padding: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease-in-out;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
         .product-image {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: contain;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
         }
 
-        .product-title {
-            font-size: 16px;
-            font-weight: bold;
+        .product-card h3 {
+            font-size: 1.2rem;
             margin: 10px 0;
-            color: #005baa;
-        }
-
-        .product-info {
-            font-size: 14px;
-            color: #666;
-            margin: 5px 0;
+            color: #003366; /* Albastru închis pentru titluri */
         }
 
         .product-price {
-            font-size: 18px;
             font-weight: bold;
-            color: #005baa;
-            margin: 10px 0;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #004d99; /* Albastru mediu pentru prețuri */
         }
 
-        .add-to-cart {
-            background-color: #005baa;
+        .add-to-cart-btn {
+            background-color: #004d99; /* Albastru mediu pentru butoane */
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 15px;
+            font-size: 1rem;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            margin-top: auto;
         }
 
-        .add-to-cart:hover {
-            background-color: #004488;
+        .add-to-cart-btn:hover {
+            background-color: #003366;
+            transform: scale(1.02);
         }
 
-        .back-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #005baa;
+        .cart-icon-container {
+            position: relative;
+        }
+
+        #cartIcon {
+            background: none;
+            border: none;
             color: white;
-            text-decoration: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            position: relative;
+            padding: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        #cartIcon:hover {
+            transform: scale(1.1);
+        }
+
+        #cartCount {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+        }
+
+        .cart-modal-content {
+            background-color: #ffffff;
+            margin: 10% auto;
+            padding: 25px;
+            border: 1px solid #ccc;
+            width: 90%;
+            max-width: 650px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        }
+
+        .cart-close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .cart-close-btn:hover {
+            color: #003366;
+        }
+
+        .cart-modal h2 {
+            text-align: center;
+            color: #003366;
+            margin-bottom: 2rem;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        #cartItemsContainer {
+            max-height: 350px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding-right: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:first-child {
+            border-top: 1px solid #eee;
+        }
+
+        .cart-item-details span {
+            display: block;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #003366;
+        }
+
+        .cart-item-price {
+            color: #004d99;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item-quantity {
+            margin: 0 15px;
+            font-weight: bold;
+            color: #004d99;
+        }
+
+        .cart-remove-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .cart-remove-btn:hover {
+            background-color: #ff5252;
+        }
+
+        .cart-empty-message {
+            text-align: center;
+            color: #888;
+            padding: 2rem 0;
+            font-style: italic;
+        }
+
+        .cart-summary {
+            text-align: right;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-top: 2px solid #eee;
+            padding-top: 1rem;
+            color: #003366;
+        }
+
+        .checkout-btn {
+            background-color: #004d99;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             border-radius: 5px;
-            margin: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            display: block;
+            width: 100%;
+        }
+
+        .checkout-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .checkout-btn:hover:not(:disabled) {
+            background-color: #003366;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header-left {
+                gap: 10px;
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+
+            header h1 {
+                font-size: 1.4rem;
+            }
+
+            .cart-modal-content {
+                margin: 5% auto;
+                width: 95%;
+                padding: 15px;
+            }
+
+            .product-card {
+                margin: 10px;
+            }
         }
     </style>
 </head>
 <body>
 <header>
-    <h1>UNIOR - Seturi de Scule Profesionale</h1>
+    <div class="header-left">
+        <img src="poze/unior-logo.png" alt="Unior Logo" class="logo-img">
+        <h1>Unior Tools</h1>
+    </div>
+    <div class="cart-icon-container">
+        <button id="cartIcon" aria-label="Vezi coșul">🛒<span id="cartCount">0</span></button>
+    </div>
 </header>
 
-<a href="index.html" class="back-button">← Înapoi la pagina principală</a>
-
 <div class="container">
-    <div class="products-grid">
+    <div class="product-grid">
         <!-- Produs 1 -->
         <div class="product-card">
-            <img src="poze/set1.jpg" alt="Set Premium VDE" class="product-image">
-            <h3 class="product-title">Set of VDE tools, premium - 1018A</h3>
-            <p class="product-info">SKU: 628819</p>
-            <p class="product-info">Cantitate: 42 piese</p>
-            <p class="product-price">1085.56 €</p>
-            <button class="add-to-cart">Adaugă în coș</button>
+            <img src="https://images.unsplash.com/photo-1600984575818-a781a90597e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                 alt="Cheie combinată" class="product-image">
+            <h3>Cheie Combinată 13mm</h3>
+            <p class="product-price">35.50 lei</p>
+            <button class="add-to-cart-btn"
+                    data-id="unior-cheie-13"
+                    data-name="Cheie Combinată 13mm"
+                    data-price="35.50">
+                Adaugă în Coș
+            </button>
         </div>
 
         <!-- Produs 2 -->
         <div class="product-card">
-            <img src="poze/set2.jpg" alt="Set Plumber" class="product-image">
-            <h3 class="product-title">Set of tools for plumbers, basic - 1013C</h3>
-            <p class="product-info">SKU: 628822</p>
-            <p class="product-info">Cantitate: 29 piese</p>
-            <p class="product-price">858.90 €</p>
-            <button class="add-to-cart">Adaugă în coș</button>
+            <img src="https://images.unsplash.com/photo-1581114218645-961473773865?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                 alt="Clește papagal" class="product-image">
+            <h3>Clește Papagal 240mm</h3>
+            <p class="product-price">78.00 lei</p>
+            <button class="add-to-cart-btn"
+                    data-id="unior-cleste-240"
+                    data-name="Clește Papagal 240mm"
+                    data-price="78.00">
+                Adaugă în Coș
+            </button>
         </div>
 
         <!-- Produs 3 -->
         <div class="product-card">
-            <img src="poze/set3.jpg" alt="Set Scule" class="product-image">
-            <h3 class="product-title">Set scule - 1000AD</h3>
-            <p class="product-info">SKU: 611884</p>
-            <p class="product-info">Cantitate: 62 piese</p>
-            <p class="product-price">547.97 €</p>
-            <button class="add-to-cart">Adaugă în coș</button>
+            <img src="https://images.unsplash.com/photo-1567519809551-8a1e4089b048?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                 alt="Șurubelniță Phillips" class="product-image">
+            <h3>Șurubelniță Phillips PH2</h3>
+            <p class="product-price">25.00 lei</p>
+            <button class="add-to-cart-btn"
+                    data-id="unior-surub-ph2"
+                    data-name="Șurubelniță Phillips PH2"
+                    data-price="25.00">
+                Adaugă în Coș
+            </button>
         </div>
 
         <!-- Produs 4 -->
         <div class="product-card">
-            <img src="poze/set4.jpg" alt="Set VDE" class="product-image">
-            <h3 class="product-title">Set scule in geanta de scule - 971/3VDE</h3>
-            <p class="product-info">SKU: 612548</p>
-            <p class="product-info">Cantitate: 62 piese</p>
-            <p class="product-price">858.90 €</p>
-            <button class="add-to-cart">Adaugă în coș</button>
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                 alt="Ciocan" class="product-image">
+            <h3>Ciocan Lăcătușerie 500g</h3>
+            <p class="product-price">45.00 lei</p>
+            <button class="add-to-cart-btn"
+                    data-id="unior-ciocan-500"
+                    data-name="Ciocan Lăcătușerie 500g"
+                    data-price="45.00">
+                Adaugă în Coș
+            </button>
         </div>
-
-        <!-- Poți adăuga mai multe produse folosind același format -->
     </div>
 </div>
+
+<!-- Modal Coș -->
+<div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+        <button class="cart-close-btn" aria-label="Închide coșul">&times;</button>
+        <h2>Coșul tău</h2>
+        <div id="cartItemsContainer">
+            <p class="cart-empty-message">Coșul este gol.</p>
+        </div>
+        <div class="cart-summary">
+            Total: <span id="cartTotal">0.00</span> lei
+        </div>
+        <button id="checkoutBtn" class="checkout-btn" disabled>Plasează Comanda</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeModalBtn = cartModal.querySelector('.cart-close-btn');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartCountSpan = document.getElementById('cartCount');
+        const cartTotalSpan = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const productGrid = document.querySelector('.product-grid');
+        const emptyCartMessage = cartModal.querySelector('.cart-empty-message');
+
+        let cart = [];
+
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                checkoutBtn.disabled = true;
+            } else {
+                emptyCartMessage.style.display = 'none';
+                checkoutBtn.disabled = false;
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.classList.add('cart-item');
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item-details">
+                            <span class="cart-item-name">${item.name}</span>
+                            <span class="cart-item-price">${item.price.toFixed(2)} lei</span>
+                        </div>
+                        <div class="cart-item-actions">
+                            <span class="cart-item-quantity">x ${item.quantity}</span>
+                            <button class="cart-remove-btn" data-id="${item.id}">Șterge</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            cartTotalSpan.textContent = total.toFixed(2);
+            cartCountSpan.textContent = totalItems;
+        }
+
+        function addToCart(productId, productName, productPrice) {
+            const existingItemIndex = cart.findIndex(item => item.id === productId);
+
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity++;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+            updateCartDisplay();
+        }
+
+        function removeFromCart(productId) {
+            const itemIndex = cart.findIndex(item => item.id === productId);
+            if (itemIndex > -1) {
+                cart.splice(itemIndex, 1);
+                updateCartDisplay();
+            }
+        }
+
+        productGrid.addEventListener('click', (event) => {
+            if (event.target.classList.contains('add-to-cart-btn')) {
+                const button = event.target;
+                const productId = button.dataset.id;
+                const productName = button.dataset.name;
+                const productPrice = parseFloat(button.dataset.price);
+                addToCart(productId, productName, productPrice);
+            }
+        });
+
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'block';
+            updateCartDisplay();
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+
+        cartItemsContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('cart-remove-btn')) {
+                const productId = event.target.dataset.id;
+                removeFromCart(productId);
+            }
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length > 0) {
+                alert(`Comandă plasată cu succes!\nTotal: ${cartTotalSpan.textContent} lei\nNumăr produse: ${cartCountSpan.textContent}\n\n(Aceasta este doar o simulare)`);
+                cart = [];
+                updateCartDisplay();
+                cartModal.style.display = 'none';
+            }
+        });
+
+        updateCartDisplay();
+    });
+</script>
 </body>
 </html>
