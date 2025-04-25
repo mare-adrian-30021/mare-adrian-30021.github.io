@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luca Bud Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #golden;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .video-background video {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.2); /* Mărit scala pentru a vedea mai mult din video */
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .video-background video.active {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100vh;
+            background-color: #121212;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 -20px 20px rgba(0,0,0,0.5);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #golden;
+        }
+
+        /* Collections Section */
+        .collections {
+            padding: 5rem 2rem;
+            background-color: #1a1a1a;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .collection-folder {
+            background-color: #232323;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .collection-folder:hover {
+            transform: translateY(-5px);
+        }
+
+        .folder-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .folder-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .folder-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .folder-content p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Modal pentru imagini */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            display: block;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <nav>
+        <img src="pozeluca/logo.jpg" alt="Luca Bud Photography" class="logo">
+        <div class="nav-links">
+            <a href="#home">Acasă</a>
+            <a href="#about">Despre</a>
+            <a href="#collections">Colecții</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<div class="video-background">
+    <video src="pozeluca/fundal1.mp4" muted autoplay></video>
+    <video src="pozeluca/fundal2.mp4" muted></video>
+    <video src="pozeluca/fundal3.mp4" muted></video>
+</div>
+
+<main>
+    <section class="about" id="about">
+        <img src="pozeluca/logo.jpg" alt="Luca Bud" class="profile-image">
+        <div class="about-text">
+            <h2>Luca Bud</h2>
+            <p>Bună, sunt Luca, un fotograf pasionat care transformă momentele speciale în amintiri de neuitat. Cu un ochi pentru detalii și o abordare creativă, surprind esența fiecărui eveniment într-un mod unic și autentic.</p>
+            <p>Specializat în fotografie de evenimente, aduc o perspectivă proaspătă și modernă în fiecare proiect. Fie că este vorba despre o nuntă elegantă, un botez intim sau o ședință foto personalizată, mă dedic să creez imagini care vor dăinui o viață.</p>
+        </div>
+    </section>
+
+    <section class="collections" id="collections">
+        <div class="collections-grid">
+            <div class="collection-folder" onclick="openModal(this)">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="Nunți" class="folder-image">
+                <div class="folder-content">
+                    <h3>Nunți</h3>
+                    <p>Povești de dragoste imortalizate în cadre autentice</p>
+                </div>
+            </div>
+            <div class="collection-folder" onclick="openModal(this)">
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba" alt="Botezuri" class="folder-image">
+                <div class="folder-content">
+                    <h3>Botezuri</h3>
+                    <p>Primii pași în viață surprinși în imagini memorabile</p>
+                </div>
+            </div>
+            <div class="collection-folder" onclick="openModal(this)">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8" alt="Stări Civile" class="folder-image">
+                <div class="folder-content">
+                    <h3>Stări Civile</h3>
+                    <p>Momente oficiale transformate în amintiri prețioase</p>
+                </div>
+            </div>
+            <div class="collection-folder" onclick="openModal(this)">
+                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce" alt="Majorate" class="folder-image">
+                <div class="folder-content">
+                    <h3>Majorate</h3>
+                    <p>Celebrarea tinereții în cadre pline de energie</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Modal pentru vizualizarea imaginilor -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+    // Video Background Rotation
+    const videos = document.querySelectorAll('.video-background video');
+    let currentVideo = 0;
+
+    function preloadVideos() {
+        videos.forEach(video => {
+            video.load();
+        });
+    }
+
+    function rotateVideos() {
+        videos[currentVideo].classList.remove('active');
+        videos[currentVideo].pause();
+
+        currentVideo = (currentVideo + 1) % videos.length;
+
+        videos[currentVideo].classList.add('active');
+        videos[currentVideo].currentTime = 0;
+        videos[currentVideo].play().catch(e => console.log("Auto-play was prevented"));
+    }
+
+    // Inițializare video
+    preloadVideos();
+    videos[0].classList.add('active');
+    videos[0].play().catch(e => console.log("Auto-play was prevented"));
+
+    videos.forEach(video => {
+        video.addEventListener('ended', rotateVideos);
+    });
+
+    // Modal pentru imagini
+    function openModal(element) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const img = element.querySelector('.folder-image');
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    // Închide modalul când se face click în afara imaginii
+    window.onclick = function(event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>
