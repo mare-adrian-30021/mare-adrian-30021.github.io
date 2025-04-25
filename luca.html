@@ -15,6 +15,7 @@
         body {
             background-color: #121212;
             color: #ffffff;
+            overflow-x: hidden;
         }
 
         /* Header Styles */
@@ -25,6 +26,7 @@
             background-color: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             padding: 1rem;
+            backdrop-filter: blur(5px);
         }
 
         nav {
@@ -33,10 +35,12 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .logo {
             height: 50px;
+            border-radius: 25px;
         }
 
         .nav-links {
@@ -52,7 +56,7 @@
         }
 
         .nav-links a:hover {
-            color: #golden;
+            color: #ffd700;
         }
 
         /* Video Background */
@@ -67,20 +71,50 @@
             background-color: #000;
         }
 
-        .video-background video {
+        .video-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .desktop-video,
+        .mobile-video {
             position: absolute;
             width: 100vw;
             height: 100vh;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.2); /* Mărit scala pentru a vedea mai mult din video */
+            transform: translate(-50%, -50%) scale(1.2);
             object-fit: cover;
+        }
+
+        .desktop-video {
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
-        .video-background video.active {
+        .desktop-video.active {
             opacity: 1;
+        }
+
+        .mobile-video {
+            display: none;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-video {
+                display: none;
+            }
+
+            .mobile-video {
+                display: block;
+            }
         }
 
         /* Main Content */
@@ -107,6 +141,7 @@
             height: 300px;
             border-radius: 50%;
             object-fit: cover;
+            box-shadow: 0 0 20px rgba(255,215,0,0.3);
         }
 
         .about-text {
@@ -116,7 +151,12 @@
         .about-text h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #golden;
+            color: #ffd700;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         /* Collections Section */
@@ -137,18 +177,24 @@
             background-color: #232323;
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
         }
 
         .collection-folder:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .folder-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .collection-folder:hover .folder-image {
+            transform: scale(1.05);
         }
 
         .folder-content {
@@ -159,6 +205,7 @@
         .folder-content h3 {
             margin-bottom: 0.5rem;
             font-size: 1.5rem;
+            color: #ffd700;
         }
 
         .folder-content p {
@@ -166,7 +213,7 @@
             font-size: 0.9rem;
         }
 
-        /* Modal pentru imagini */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -177,13 +224,14 @@
             background-color: rgba(0, 0, 0, 0.9);
             z-index: 2000;
             padding: 2rem;
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-content {
             max-width: 90%;
             max-height: 90vh;
-            margin: auto;
-            display: block;
+            object-fit: contain;
         }
 
         .close {
@@ -194,13 +242,23 @@
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            transition: color 0.3s;
         }
 
-        /* Responsive Design */
+        .close:hover {
+            color: #ffd700;
+        }
+
         @media (max-width: 768px) {
             .about {
                 flex-direction: column;
                 text-align: center;
+                padding: 3rem 1rem;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
             }
 
             .nav-links {
@@ -209,10 +267,14 @@
 
             .collections-grid {
                 grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .modal {
+                padding: 1rem;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 <header>
@@ -228,9 +290,21 @@
 </header>
 
 <div class="video-background">
-    <video src="pozeluca/fundal1.mp4" muted autoplay></video>
-    <video src="pozeluca/fundal2.mp4" muted></video>
-    <video src="pozeluca/fundal3.mp4" muted></video>
+    <!-- Desktop Videos -->
+    <video class="desktop-video" muted autoplay playsinline>
+        <source src="pozeluca/fundal1.webm" type="video/webm">
+    </video>
+    <video class="desktop-video" muted playsinline>
+        <source src="pozeluca/fundal2.webm" type="video/webm">
+    </video>
+    <video class="desktop-video" muted playsinline>
+        <source src="pozeluca/fundal3.webm" type="video/webm">
+    </video>
+
+    <!-- Mobile Video - optimizat pentru mobile -->
+    <video class="mobile-video" muted autoplay loop playsinline>
+        <source src="https://player.vimeo.com/progressive_redirect/playback/748固定/rendition/720p/file.mp4?loc=external&oauth2_token_id=57447761&signature=6f07ce12c39c8bbe36060c3fa69c57" type="video/mp4">
+    </video>
 </div>
 
 <main>
@@ -277,44 +351,51 @@
     </section>
 </main>
 
-<!-- Modal pentru vizualizarea imaginilor -->
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="modalImage">
 </div>
 
 <script>
-    // Video Background Rotation
-    const videos = document.querySelectorAll('.video-background video');
+    // Funcții pentru video background
+    const desktopVideos = document.querySelectorAll('.desktop-video');
+    const mobileVideo = document.querySelector('.mobile-video');
     let currentVideo = 0;
 
-    function preloadVideos() {
-        videos.forEach(video => {
-            video.load();
-        });
+    function isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
-    function rotateVideos() {
-        videos[currentVideo].classList.remove('active');
-        videos[currentVideo].pause();
+    function initializeVideos() {
+        if (isMobile()) {
+            // Inițializare video mobil
+            if (mobileVideo) {
+                mobileVideo.play().catch(function(error) {
+                    console.log("Mobile video autoplay failed:", error);
+                });
+            }
+        } else {
+            // Inițializare video-uri desktop
+            desktopVideos[0].classList.add('active');
+            desktopVideos[0].play().catch(function(error) {
+                console.log("Desktop video autoplay failed:", error);
+            });
 
-        currentVideo = (currentVideo + 1) % videos.length;
-
-        videos[currentVideo].classList.add('active');
-        videos[currentVideo].currentTime = 0;
-        videos[currentVideo].play().catch(e => console.log("Auto-play was prevented"));
+            desktopVideos.forEach((video, index) => {
+                video.addEventListener('ended', () => {
+                    video.classList.remove('active');
+                    const nextIndex = (index + 1) % desktopVideos.length;
+                    desktopVideos[nextIndex].classList.add('active');
+                    desktopVideos[nextIndex].play().catch(e => console.log("Video autoplay failed"));
+                });
+            });
+        }
     }
 
-    // Inițializare video
-    preloadVideos();
-    videos[0].classList.add('active');
-    videos[0].play().catch(e => console.log("Auto-play was prevented"));
+    // Inițializare la încărcarea paginii
+    document.addEventListener('DOMContentLoaded', initializeVideos);
 
-    videos.forEach(video => {
-        video.addEventListener('ended', rotateVideos);
-    });
-
-    // Modal pentru imagini
+    // Funcții pentru modal
     function openModal(element) {
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImage");
@@ -327,7 +408,6 @@
         document.getElementById("imageModal").style.display = "none";
     }
 
-    // Închide modalul când se face click în afara imaginii
     window.onclick = function(event) {
         const modal = document.getElementById("imageModal");
         if (event.target == modal) {
