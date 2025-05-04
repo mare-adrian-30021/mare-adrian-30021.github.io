@@ -10,11 +10,9 @@
     body {
       min-height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #232526 0%, #414345 100%);
-      font-family: 'Montserrat', Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url('/fundal.png') center center / cover no-repeat fixed;
+      font-family: Arial, sans-serif;
     }
     h1 {
       color: #fff;
@@ -69,91 +67,106 @@
       margin-bottom: 0.5rem;
       background: #fff;
     }
-    .hub-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2.5rem;
-      margin: 3rem 0 2rem 0;
+    /* Carousel styles */
+    .carousel-container {
       width: 100%;
-      max-width: 1200px;
-    }
-    .hub-card {
-      background: rgba(255,255,255,0.07);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.18);
-      width: 260px;
-      min-height: 340px;
+      max-width: 900px;
+      margin: 3rem auto 2rem auto;
+      position: relative;
+      overflow: visible;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1.2rem 1.5rem 1.2rem;
-      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .carousel-track {
+      display: flex;
+      align-items: center;
+      transition: transform 0.5s cubic-bezier(.39,.575,.56,1);
+      will-change: transform;
+      margin-bottom: 2rem;
+      user-select: none;
+    }
+    .carousel-card {
+      width: 180px;
+      height: 260px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+      border: 1px solid rgba(255,255,255,0.13);
+      margin: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.2rem 1rem 1rem 1rem;
+      transition: transform 0.4s, box-shadow 0.4s, z-index 0s;
       position: relative;
-      overflow: hidden;
       cursor: pointer;
-      animation: fadeInUp 0.7s cubic-bezier(.39,.575,.56,1) both;
+      opacity: 0.7;
+      z-index: 1;
     }
-    .hub-card:hover {
-      transform: translateY(-12px) scale(1.04) rotate(-1deg);
+    .carousel-card.active {
+      width: 260px;
+      height: 340px;
+      transform: scale(1.25) translateY(-20px);
       box-shadow: 0 16px 40px 0 rgba(31,38,135,0.25);
-      background: rgba(255,255,255,0.13);
+      opacity: 1;
+      z-index: 2;
+      background: rgba(255,255,255,0.18);
     }
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(40px);}
-      100% { opacity: 1; transform: none;}
-    }
-    .hub-logo {
-      width: 80px;
-      height: 80px;
+    .carousel-logo {
+      width: 70px;
+      height: 70px;
       object-fit: contain;
       border-radius: 16px;
       background: #fff;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       box-shadow: 0 2px 12px #0002;
-      transition: box-shadow 0.2s;
     }
-    .hub-card:hover .hub-logo {
-      box-shadow: 0 4px 24px #0004;
-    }
-    .hub-title {
+    .carousel-title {
       color: #fff;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.5rem;
       text-align: center;
       letter-spacing: 1px;
       text-shadow: 0 2px 8px #0006;
     }
-    .hub-desc {
+    .carousel-desc {
       color: #e0e0e0;
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-align: center;
-      margin-bottom: 1.2rem;
-      min-height: 48px;
+      margin-bottom: 1rem;
+      min-height: 40px;
     }
-    .hub-link {
+    .carousel-link {
       margin-top: auto;
       display: inline-block;
-      padding: 0.6rem 1.5rem;
+      padding: 0.5rem 1.2rem;
       background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
       color: #232526;
       font-weight: 700;
       border-radius: 30px;
       text-decoration: none;
-      font-size: 1.05rem;
+      font-size: 1rem;
       box-shadow: 0 2px 8px #38f9d755;
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       letter-spacing: 1px;
     }
-    .hub-card:hover .hub-link {
+    .carousel-card.active .carousel-link {
       background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
       color: #111;
       box-shadow: 0 4px 16px #38f9d799;
     }
+    .carousel-slider {
+      width: 60%;
+      margin: 0 auto;
+      accent-color: #43e97b;
+    }
     @media (max-width: 900px) {
+      .carousel-container { max-width: 98vw; }
+      .carousel-card, .carousel-card.active { width: 90vw; min-width: 180px; }
+      .carousel-slider { width: 90%; }
       .hub-container { gap: 1.5rem; }
       .hub-card { width: 90vw; max-width: 340px; }
       .presentation-section { padding: 1.2rem 0.7rem 1rem 0.7rem; gap: 1rem; }
@@ -161,6 +174,8 @@
     }
     @media (max-width: 600px) {
       h1 { font-size: 1.5rem; }
+      .carousel-slider { width: 98%; }
+      .carousel-card, .carousel-card.active { min-width: 160px; }
       .hub-container { gap: 1rem; }
       .hub-card { padding: 1.2rem 0.5rem 1rem 0.5rem; }
       .presentation-section { font-size: 0.98rem; flex-direction: column; align-items: center; }
@@ -169,7 +184,7 @@
   </style>
 </head>
 <body>
-<!--<h1>Proiectele mele</h1>-->
+<h1>Proiectele mele</h1>
 
 <div class="presentation-section">
   <img src="poze/profile.jpg" alt="Mare Adrian" class="profile-img">
@@ -193,42 +208,79 @@
   </div>
 </div>
 
-<div class="hub-container">
-  <!-- HUDAC -->
-  <div class="hub-card" onclick="window.open('hudac.html','_blank')">
-    <img src="pozehudac/logo.png" alt="Hudac Logo" class="hub-logo">
-    <div class="hub-title">Frizerie Hudac</div>
-    <div class="hub-desc">Site modern pentru frizerie, cu programări și galerie.</div>
-    <a href="hudac.html" class="hub-link" target="_blank">Vezi site</a>
+<div class="carousel-container">
+  <div class="carousel-track" id="carouselTrack">
+    <!-- Cardurile vor fi generate din JS -->
   </div>
-  <!-- LUCA -->
-  <div class="hub-card" onclick="window.open('luca.html','_blank')">
-    <img src="pozeluca/logo.jpg" alt="Luca Logo" class="hub-logo">
-    <div class="hub-title">Fotograf Luca</div>
-    <div class="hub-desc">Prezentare fotograf, portofoliu și colecții de poze.</div>
-    <a href="luca.html" class="hub-link" target="_blank">Vezi site</a>
-  </div>
-  <!-- NEAMTU -->
-  <div class="hub-card" onclick="window.open('neamtu.html','_blank')">
-    <img src="pozeneamtu/logo.jpg" alt="Neamtu Logo" class="hub-logo">
-    <div class="hub-title">Aprozar Neamțu</div>
-    <div class="hub-desc">Site de prezentare aprozar, cu oferte și informații.</div>
-    <a href="neamtu.html" class="hub-link" target="_blank">Vezi site</a>
-  </div>
-  <!-- SITE PRB -->
-  <div class="hub-card" onclick="window.open('siteprb.html','_blank')">
-    <img src="poze/logo.png" alt="Site PRB Logo" class="hub-logo">
-    <div class="hub-title">Magazin Scule PRB</div>
-    <div class="hub-desc">Platformă e-commerce pentru scule și echipamente profesionale.</div>
-    <a href="siteprb.html" class="hub-link" target="_blank">Vezi site</a>
-  </div>
-  <!-- TERENURI -->
-  <div class="hub-card" onclick="window.open('terenuri.html','_blank')">
-    <img src="pozeterenuri/harta.png" alt="Terenuri Logo" class="hub-logo">
-    <div class="hub-title">Harta Terenuri</div>
-    <div class="hub-desc">Hartă interactivă cu terenuri, status și detalii.</div>
-    <a href="terenuri.html" class="hub-link" target="_blank">Vezi site</a>
-  </div>
+  <input type="range" min="0" max="4" value="2" class="carousel-slider" id="carouselSlider">
 </div>
+
+<script>
+  const carouselSites = [
+    {
+      logo: "pozehudac/logo.png",
+      title: "Frizerie Hudac",
+      desc: "Site modern pentru frizerie, cu programări și galerie.",
+      link: "hudac.html"
+    },
+    {
+      logo: "pozeluca/logo.jpg",
+      title: "Fotograf Luca",
+      desc: "Prezentare fotograf, portofoliu și colecții de poze.",
+      link: "luca.html"
+    },
+    {
+      logo: "pozeneamtu/logo.jpg",
+      title: "Aprozar Neamțu",
+      desc: "Site de prezentare aprozar, cu oferte și informații.",
+      link: "neamtu.html"
+    },
+    {
+      logo: "poze/logo.png",
+      title: "Magazin Scule PRB",
+      desc: "Platformă e-commerce pentru scule și echipamente profesionale.",
+      link: "siteprb.html"
+    },
+    {
+      logo: "pozeterenuri/harta.png",
+      title: "Harta Terenuri",
+      desc: "Hartă interactivă cu terenuri, status și detalii.",
+      link: "terenuri.html"
+    }
+  ];
+
+  const carouselTrack = document.getElementById('carouselTrack');
+  const carouselSlider = document.getElementById('carouselSlider');
+  let current = 2; // indexul cardului din mijloc
+
+  function renderCarousel() {
+    carouselTrack.innerHTML = '';
+    carouselSites.forEach((site, i) => {
+      const card = document.createElement('div');
+      card.className = 'carousel-card' + (i === current ? ' active' : '');
+      card.innerHTML = `
+        <img src="${site.logo}" alt="${site.title} Logo" class="carousel-logo">
+        <div class="carousel-title">${site.title}</div>
+        <div class="carousel-desc">${site.desc}</div>
+        <a href="${site.link}" class="carousel-link" target="_blank">Vezi site</a>
+      `;
+      card.onclick = () => window.open(site.link, '_blank');
+      carouselTrack.appendChild(card);
+    });
+    // Center the active card
+    const offset = (carouselSites.length / 2 - current) * 220;
+    carouselTrack.style.transform = `translateX(${offset}px)`;
+    carouselSlider.value = current;
+  }
+
+  carouselSlider.max = carouselSites.length - 1;
+  carouselSlider.value = current;
+  carouselSlider.oninput = function() {
+    current = parseInt(this.value);
+    renderCarousel();
+  };
+
+  renderCarousel();
+</script>
 </body>
 </html>
