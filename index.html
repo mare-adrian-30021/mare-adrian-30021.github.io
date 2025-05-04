@@ -2,459 +2,233 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mare Adrian - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofoliu - Hub Proiecte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
   <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
     body {
-        background-color: #f0f2f5;
-        color: #333;
-        line-height: 1.6;
-        overflow-x: hidden;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #232526 0%, #414345 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
-    /* Header styles */
-    header {
-        background-color: #1a1a1a;
-        padding: 1rem;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    h1 {
+      color: #fff;
+      margin-top: 2rem;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 16px #0008;
+      text-align: center;
     }
-
-    .mobile-menu-btn {
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
+    .presentation-section {
+      background: rgba(255,255,255,0.10);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.13);
+      max-width: 700px;
+      margin: 2rem auto 1.5rem auto;
+      padding: 2rem 2rem 1.5rem 2rem;
+      color: #fff;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      text-align: justify;
+      animation: fadeInUp 0.8s cubic-bezier(.39,.575,.56,1) both;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
     }
-
-    nav {
-        max-width: 1200px;
-        margin: 0 auto;
+    .presentation-text {
+      flex: 2;
+      min-width: 0;
     }
-
-    .nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
+    .presentation-section h2 {
+      color: #43e97b;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0006;
     }
-
-    .nav-item {
-        color: white;
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-        white-space: nowrap;
+    .profile-img {
+      flex: 1;
+      min-width: 120px;
+      max-width: 180px;
+      align-self: flex-start;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px #0006;
+      object-fit: cover;
+      width: 100%;
+      height: 180px;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      background: #fff;
     }
-
-    .nav-item:hover {
-        background-color: #333;
+    .hub-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 3rem 0 2rem 0;
+      width: 100%;
+      max-width: 1200px;
     }
-
-    /* Main content */
-    .main-content {
-        padding-top: 4rem;
-        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                    url('poze/it-background.jpg') center/cover fixed;
+    .hub-card {
+      background: rgba(255,255,255,0.07);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18);
+      width: 260px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.2rem 1.5rem 1.2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: fadeInUp 0.7s cubic-bezier(.39,.575,.56,1) both;
     }
-
-    section {
-        margin: 1rem;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 15px;
-        padding: 1.5rem;
+    .hub-card:hover {
+      transform: translateY(-12px) scale(1.04) rotate(-1deg);
+      box-shadow: 0 16px 40px 0 rgba(31,38,135,0.25);
+      background: rgba(255,255,255,0.13);
     }
-
-    /* Profile section */
-    .profile-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 1.5rem;
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px);}
+      100% { opacity: 1; transform: none;}
     }
-
-    .profile-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 5px solid #1a1a1a;
+    .hub-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #fff;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 12px #0002;
+      transition: box-shadow 0.2s;
     }
-
-    .profile-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    .hub-card:hover .hub-logo {
+      box-shadow: 0 4px 24px #0004;
     }
-
-    .profile-info h1 {
-        font-size: 1.8rem;
-        color: #1a1a1a;
-        margin-bottom: 0.5rem;
+    .hub-title {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0006;
     }
-
-    .profile-info h2 {
-        font-size: 1.2rem;
-        color: #666;
-        margin-bottom: 0.5rem;
+    .hub-desc {
+      color: #e0e0e0;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      min-height: 48px;
     }
-
-    .profile-info p {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+    .hub-link {
+      margin-top: auto;
+      display: inline-block;
+      padding: 0.6rem 1.5rem;
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+      color: #232526;
+      font-weight: 700;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      box-shadow: 0 2px 8px #38f9d755;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      letter-spacing: 1px;
     }
-
-    /* Skills section */
-    .skills-section h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
+    .hub-card:hover .hub-link {
+      background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+      color: #111;
+      box-shadow: 0 4px 16px #38f9d799;
     }
-
-    .skills-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
+    @media (max-width: 900px) {
+      .hub-container { gap: 1.5rem; }
+      .hub-card { width: 90vw; max-width: 340px; }
+      .presentation-section { padding: 1.2rem 0.7rem 1rem 0.7rem; gap: 1rem; }
+      .profile-img { max-width: 120px; height: 120px; }
     }
-
-    .skill-card {
-        background: #fff;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .skill-card h3 {
-        margin-bottom: 0.5rem;
-        color: #1a1a1a;
-    }
-
-    .skill-card ul {
-        list-style-position: inside;
-        padding-left: 0.5rem;
-    }
-
-    /* Projects section */
-    .projects-section h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .portfolio-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .portfolio-item {
-        background: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-        text-decoration: none;
-        color: #333;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .portfolio-image {
-        width: 100%;
-        height: 150px;
-        overflow: hidden;
-    }
-
-    .portfolio-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .portfolio-content {
-        padding: 1rem;
-    }
-
-    .portfolio-content h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-        color: #1a1a1a;
-    }
-
-    .portfolio-content p {
-        font-size: 0.9rem;
-        color: #666;
-    }
-
-    /* Contact section */
-    .contact-section h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .contact-item i {
-        font-size: 1.5rem;
-    }
-
-    /* Desktop styles */
-    @media (min-width: 768px) {
-        .mobile-menu-btn {
-            display: none;
-        }
-
-        section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
-        }
-
-        .profile-section {
-            flex-direction: row;
-            text-align: left;
-        }
-
-        .profile-image {
-            width: 300px;
-            height: 300px;
-        }
-
-        .skills-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .portfolio-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .contact-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    /* Mobile styles */
-    @media (max-width: 767px) {
-        .mobile-menu-btn {
-            display: block;
-        }
-
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: #1a1a1a;
-            padding: 1rem;
-        }
-
-        .nav-links.active {
-            display: flex;
-        }
-
-        .nav-item {
-            width: 100%;
-            text-align: center;
-        }
-
-        section {
-            margin: 1rem;
-            padding: 1rem;
-        }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .hub-container { gap: 1rem; }
+      .hub-card { padding: 1.2rem 0.5rem 1rem 0.5rem; }
+      .presentation-section { font-size: 0.98rem; flex-direction: column; align-items: center; }
+      .profile-img { margin-bottom: 1rem; }
     }
   </style>
 </head>
 <body>
-<header>
-  <button class="mobile-menu-btn">☰</button>
-  <nav>
-    <div class="nav-links">
-      <a href="#despre" class="nav-item">Despre Mine</a>
-      <a href="#skills" class="nav-item">Abilități</a>
-      <a href="#projects" class="nav-item">Proiecte</a>
-      <a href="#contact" class="nav-item">Contact</a>
-    </div>
-  </nav>
-</header>
+<!--<h1>Proiectele mele</h1>-->
 
-<div class="main-content">
-  <section id="despre" class="profile-section">
-    <div class="profile-image">
-      <img src="poze/profile.jpg" alt="Mare Adrian">
-    </div>
-    <div class="profile-info">
-      <h1>Mare Adrian</h1>
-      <h2>Student anul III - Automatică și Calculatoare</h2>
-      <p>Universitatea Tehnică din Cluj-Napoca</p>
-      <p>Sunt un student pasionat de tehnologie și inovație, specializat în dezvoltarea software și sisteme automate. Pe parcursul celor trei ani de studiu, mi-am dezvoltat atât cunoștințele teoretice cât și abilitățile practice în domeniul automaticii și calculatoarelor.</p>
-    </div>
-  </section>
-
-  <section id="skills" class="skills-section">
-    <h2>Abilități Dezvoltate</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <h3>Programare</h3>
-        <ul>
-          <li>C/C++</li>
-          <li>Python</li>
-          <li>Java</li>
-          <li>MATLAB</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <h3>Web Development</h3>
-        <ul>
-          <li>HTML/CSS</li>
-          <li>JavaScript</li>
-          <li>React</li>
-          <li>Node.js</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <h3>Automatică</h3>
-        <ul>
-          <li>Sisteme de Control</li>
-          <li>PLC Programming</li>
-          <li>Robotică</li>
-          <li>Senzori și Actuatori</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="projects-section">
-    <h2>Proiecte Realizate</h2>
-    <div class="portfolio-grid">
-      <a href="hudac.html" class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="pozehudac/logo.png" alt="Site Frizerie">
-        </div>
-        <div class="portfolio-content">
-          <h3>Site Frizerie</h3>
-          <p>Design modern pentru servicii de frizerie, cu sistem de programări și galerie de lucrări.</p>
-        </div>
-      </a>
-      <a href="siteprb.html" class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="poze/logo.png" alt="Magazin Online Scule">
-        </div>
-        <div class="portfolio-content">
-          <h3>Magazin Online Scule</h3>
-          <p>Platformă e-commerce pentru vânzarea de scule și echipamente profesionale.</p>
-        </div>
-      </a>
-      <a href="neamtu.html" class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="pozeneamtu/logo.jpg" alt="Magazin Aprozar Prezentare">
-        </div>
-        <div class="portfolio-content">
-          <h3>Aprozar</h3>
-          <p>Site de prezentare aprozar, cu oferta zilelei.</p>
-        </div>
-      </a>
-      <a href="luca.html" class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="pozeluca/logo.jpg" alt="Fotograf Prezentare">
-        </div>
-        <div class="portfolio-content">
-          <h3>Fotograf</h3>
-          <p>Site de prezentare fotograf, cu colectii de poze.</p>
-        </div>
-      </a>
-      <a href="terenuri.html" class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="poze/logo.png" alt="Magazin Online Scule">
-        </div>
-        <div class="portfolio-content">
-          <h3>Magazin Online Scule</h3>
-          <p>Platformă e-commerce pentru vânzarea de scule și echipamente profesionale.</p>
-        </div>
-      </a>
-    </div>
-  </section>
-
-
-  <section id="contact" class="contact-section">
-    <h2>Contact</h2>
-    <div class="contact-grid">
-      <div class="contact-item">
-        <i>📧</i>
-        <div>
-          <h3>Email</h3>
-          <p>mare.adrian@student.utcluj.ro</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <i>💼</i>
-        <div>
-          <h3>LinkedIn</h3>
-          <p>linkedin.com/in/mare-adrian</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <i>💻</i>
-        <div>
-          <h3>GitHub</h3>
-          <p>github.com/mare-adrian</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="presentation-section">
+  <img src="poze/profile.jpg" alt="Mare Adrian" class="profile-img">
+  <div class="presentation-text">
+    <h2>Prezentare – Mare Adrian</h2>
+    <p>
+      Mă numesc Mare Adrian și sunt student în anul III la Facultatea de Automatică din cadrul Universității Tehnice din Cluj-Napoca. În decursul parcursului meu academic am dobândit cunoștințe solide în domeniul ingineriei, atât teoretice, cât și practice, cu un interes special pentru construcția și funcționarea fizică a sistemelor automate.
+    </p>
+    <p>
+      Pe lângă studiile universitare, am urmat un curs de QA Engineering, unde am învățat să aplic metode de testare atât manuală, cât și automată. Această experiență m-a ajutat să înțeleg mai bine procesele de dezvoltare software și importanța controlului calității în livrarea unui produs performant.
+    </p>
+    <p>
+      Bazele în programare mi le-am format în liceu, în cadrul Colegiului Național „Ioan Slavici” din Satu Mare, unde am urmat un profil intensiv de informatică. Tot în această perioadă am început să-mi dezvolt gândirea analitică și capacitatea de a rezolva probleme tehnice complexe. Ulterior, am urmat și o formare postliceală în operarea și programarea mașinilor CNC, ceea ce mi-a oferit o înțelegere practică a proceselor industriale moderne.
+    </p>
+    <p>
+      Pe plan profesional, am ocupat funcția de director de achiziții într-o companie multinațională. În acest rol, am dobândit experiență valoroasă în prelucrarea de date, organizarea activităților și lucrul cu oameni din medii diverse. Am învățat să gestionez responsabilități complexe și să coordonez eficient procese care implică atât resurse umane, cât și logistice.
+    </p>
+    <p>
+      Consider că toate aceste experiențe – educaționale și profesionale – m-au format ca o persoană versatilă, capabilă să se adapteze rapid și să îmbine abilitățile tehnice cu cele de organizare și comunicare. Sunt pasionat de tehnologie și dezvoltare continuă și caut mereu oportunități prin care pot să-mi aplic cunoștințele și să contribui activ la proiecte ambițioase.
+    </p>
+  </div>
 </div>
 
-<script>
-  // Meniu mobil
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const navLinks = document.querySelector('.nav-links');
-
-  mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-  });
-
-  // Închide meniul la click pe link
-  document.querySelectorAll('.nav-item').forEach(link => {
-      link.addEventListener('click', () => {
-          navLinks.classList.remove('active');
-      });
-  });
-
-  // Smooth scrolling
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
-      });
-  });
-</script>
+<div class="hub-container">
+  <!-- HUDAC -->
+  <div class="hub-card" onclick="window.open('hudac.html','_blank')">
+    <img src="pozehudac/logo.png" alt="Hudac Logo" class="hub-logo">
+    <div class="hub-title">Frizerie Hudac</div>
+    <div class="hub-desc">Site modern pentru frizerie, cu programări și galerie.</div>
+    <a href="hudac.html" class="hub-link" target="_blank">Vezi site</a>
+  </div>
+  <!-- LUCA -->
+  <div class="hub-card" onclick="window.open('luca.html','_blank')">
+    <img src="pozeluca/logo.jpg" alt="Luca Logo" class="hub-logo">
+    <div class="hub-title">Fotograf Luca</div>
+    <div class="hub-desc">Prezentare fotograf, portofoliu și colecții de poze.</div>
+    <a href="luca.html" class="hub-link" target="_blank">Vezi site</a>
+  </div>
+  <!-- NEAMTU -->
+  <div class="hub-card" onclick="window.open('neamtu.html','_blank')">
+    <img src="pozeneamtu/logo.jpg" alt="Neamtu Logo" class="hub-logo">
+    <div class="hub-title">Aprozar Neamțu</div>
+    <div class="hub-desc">Site de prezentare aprozar, cu oferte și informații.</div>
+    <a href="neamtu.html" class="hub-link" target="_blank">Vezi site</a>
+  </div>
+  <!-- SITE PRB -->
+  <div class="hub-card" onclick="window.open('siteprb.html','_blank')">
+    <img src="poze/logo.png" alt="Site PRB Logo" class="hub-logo">
+    <div class="hub-title">Magazin Scule PRB</div>
+    <div class="hub-desc">Platformă e-commerce pentru scule și echipamente profesionale.</div>
+    <a href="siteprb.html" class="hub-link" target="_blank">Vezi site</a>
+  </div>
+  <!-- TERENURI -->
+  <div class="hub-card" onclick="window.open('terenuri.html','_blank')">
+    <img src="pozeterenuri/harta.png" alt="Terenuri Logo" class="hub-logo">
+    <div class="hub-title">Harta Terenuri</div>
+    <div class="hub-desc">Hartă interactivă cu terenuri, status și detalii.</div>
+    <a href="terenuri.html" class="hub-link" target="_blank">Vezi site</a>
+  </div>
+</div>
 </body>
 </html>
