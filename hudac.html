@@ -82,6 +82,7 @@
         justify-content: center;
         text-align: center;
         padding: 0 5%;
+        position: relative;
     }
 
     .hero-content h1 {
@@ -94,6 +95,185 @@
         font-size: 1.2rem;
         color: var(--text-gray);
         margin-bottom: 2rem;
+    }
+
+    /* Chenar Programare */
+    .booking-panel {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 350px;
+        background: var(--secondary-black);
+        border: 2px solid var(--accent-gold);
+        border-radius: 15px;
+        padding: 1.5rem;
+        z-index: 999;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .booking-panel h3 {
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .calendar-container {
+        margin-bottom: 1rem;
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .calendar-nav {
+        background: var(--accent-gold);
+        color: var(--primary-black);
+        border: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .calendar-month {
+        color: var(--accent-gold);
+        font-weight: bold;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        margin-bottom: 1rem;
+    }
+
+    .calendar-day {
+        background: var(--primary-black);
+        color: var(--text-white);
+        border: 1px solid var(--accent-gold);
+        padding: 0.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .calendar-day:hover {
+        background: var(--accent-gold);
+        color: var(--primary-black);
+    }
+
+    .calendar-day.selected {
+        background: var(--accent-gold);
+        color: var(--primary-black);
+        font-weight: bold;
+    }
+
+    .calendar-day.disabled {
+        background: #555;
+        color: #999;
+        cursor: not-allowed;
+    }
+
+    .calendar-day.disabled:hover {
+        background: #555;
+        color: #999;
+    }
+
+    .day-header {
+        color: var(--accent-gold);
+        font-weight: bold;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .time-slots {
+        margin: 1rem 0;
+        display: none;
+    }
+
+    .time-slots.active {
+        display: block;
+    }
+
+    .time-slot {
+        background: var(--primary-black);
+        color: var(--text-white);
+        border: 1px solid var(--accent-gold);
+        padding: 0.7rem;
+        margin: 0.3rem 0;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s;
+    }
+
+    .time-slot:hover {
+        background: var(--accent-gold);
+        color: var(--primary-black);
+    }
+
+    .time-slot.selected {
+        background: var(--accent-gold);
+        color: var(--primary-black);
+        font-weight: bold;
+    }
+
+    .time-slot.occupied {
+        background: #8b0000;
+        color: #ccc;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    .time-slot.occupied:hover {
+        background: #8b0000;
+        color: #ccc;
+    }
+
+    .booking-form {
+        margin-top: 1rem;
+        display: none;
+    }
+
+    .booking-form.active {
+        display: block;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        color: var(--accent-gold);
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.7rem;
+        background: var(--primary-black);
+        color: var(--text-white);
+        border: 1px solid var(--accent-gold);
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--accent-gold);
+        box-shadow: 0 0 5px rgba(198, 165, 92, 0.3);
     }
 
     .services {
@@ -188,12 +368,12 @@
         height: 400px;
         border-radius: 10px;
         overflow: hidden;
-        display: none; /* Ascunde harta implicit */
+        display: none;
         margin-top: 2rem;
     }
 
     .map-container.active {
-        display: block; /* Afișează harta când are clasa active */
+        display: block;
     }
 
     .btn {
@@ -207,6 +387,9 @@
         transition: transform 0.3s;
         border: none;
         cursor: pointer;
+        width: 100%;
+        text-align: center;
+        font-size: 1rem;
     }
 
     .btn:hover {
@@ -216,6 +399,7 @@
     .location-btn {
         display: block;
         margin: 0 auto;
+        width: auto;
     }
 
     footer {
@@ -223,6 +407,26 @@
         padding: 2rem 5%;
         text-align: center;
         color: var(--text-gray);
+    }
+
+    .success-message {
+        background: #4CAF50;
+        color: white;
+        padding: 1rem;
+        border-radius: 5px;
+        margin: 1rem 0;
+        text-align: center;
+        display: none;
+    }
+
+    .error-message {
+        background: #f44336;
+        color: white;
+        padding: 1rem;
+        border-radius: 5px;
+        margin: 1rem 0;
+        text-align: center;
+        display: none;
     }
 
     @media (max-width: 768px) {
@@ -236,6 +440,15 @@
 
         .nav-links {
             display: none;
+        }
+
+        .booking-panel {
+            position: relative;
+            right: auto;
+            top: auto;
+            transform: none;
+            width: 100%;
+            margin: 2rem 0;
         }
     }
   </style>
@@ -256,6 +469,40 @@
     </div>
   </nav>
 </header>
+
+<!-- Chenar Programare -->
+<div class="booking-panel">
+  <h3>Programează-te la tuns</h3>
+
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button class="calendar-nav" onclick="changeMonth(-1)">‹</button>
+      <div class="calendar-month" id="currentMonth"></div>
+      <button class="calendar-nav" onclick="changeMonth(1)">›</button>
+    </div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+  </div>
+
+  <div class="time-slots" id="timeSlots">
+    <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Alege ora:</h4>
+    <div id="timeSlotsList"></div>
+  </div>
+
+  <div class="booking-form" id="bookingForm">
+    <div class="form-group">
+      <label for="clientName">Nume complet:</label>
+      <input type="text" id="clientName" required>
+    </div>
+    <div class="form-group">
+      <label for="clientPhone">Număr de telefon:</label>
+      <input type="tel" id="clientPhone" required>
+    </div>
+    <button class="btn" onclick="makeReservation()">Rezervă</button>
+  </div>
+
+  <div class="success-message" id="successMessage"></div>
+  <div class="error-message" id="errorMessage"></div>
+</div>
 
 <section class="hero" id="home">
   <div class="hero-content">
@@ -339,6 +586,203 @@
 </footer>
 
 <script>
+  let currentDate = new Date();
+  let selectedDate = null;
+  let selectedTime = null;
+  const API_BASE = 'http://localhost:3000/api';
+
+  const timeSlots = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+  const months = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+                  'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+  const days = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
+
+  function initializeCalendar() {
+      renderCalendar();
+  }
+
+  function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      document.getElementById('currentMonth').textContent = `${months[month]} ${year}`;
+
+      const calendarGrid = document.getElementById('calendarGrid');
+      calendarGrid.innerHTML = '';
+
+      // Add day headers
+      days.forEach(day => {
+          const dayHeader = document.createElement('div');
+          dayHeader.className = 'day-header';
+          dayHeader.textContent = day;
+          calendarGrid.appendChild(dayHeader);
+      });
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const startDate = new Date(firstDay);
+      startDate.setDate(startDate.getDate() - (firstDay.getDay() || 7) + 1);
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      for (let i = 0; i < 42; i++) {
+          const date = new Date(startDate);
+          date.setDate(startDate.getDate() + i);
+
+          const dayElement = document.createElement('div');
+          dayElement.className = 'calendar-day';
+          dayElement.textContent = date.getDate();
+
+          if (date.getMonth() !== month) {
+              dayElement.style.opacity = '0.3';
+          }
+
+          if (date < today) {
+              dayElement.classList.add('disabled');
+          } else {
+              dayElement.onclick = () => selectDate(date);
+          }
+
+          calendarGrid.appendChild(dayElement);
+      }
+  }
+
+  function changeMonth(direction) {
+      currentDate.setMonth(currentDate.getMonth() + direction);
+      renderCalendar();
+  }
+
+  function selectDate(date) {
+      // Remove previous selection
+      document.querySelectorAll('.calendar-day').forEach(day => {
+          day.classList.remove('selected');
+      });
+
+      // Add selection to clicked day
+      event.target.classList.add('selected');
+
+      selectedDate = date;
+      loadTimeSlots(date);
+  }
+
+  async function loadTimeSlots(date) {
+      const dateStr = date.toISOString().split('T')[0];
+
+      try {
+          const response = await fetch(`${API_BASE}/bookings/${dateStr}`);
+          const bookedSlots = await response.json();
+
+          const timeSlotsContainer = document.getElementById('timeSlotsList');
+          timeSlotsContainer.innerHTML = '';
+
+          timeSlots.forEach(time => {
+              const slot = document.createElement('div');
+              slot.className = 'time-slot';
+              slot.textContent = time;
+
+              if (bookedSlots.includes(time)) {
+                  slot.classList.add('occupied');
+                  slot.textContent += ' (Ocupat)';
+              } else {
+                  slot.onclick = () => selectTime(time, slot);
+              }
+
+              timeSlotsContainer.appendChild(slot);
+          });
+
+          document.getElementById('timeSlots').classList.add('active');
+      } catch (error) {
+          showError('Eroare la încărcarea orelor disponibile');
+      }
+  }
+
+  function selectTime(time, element) {
+      // Remove previous selection
+      document.querySelectorAll('.time-slot').forEach(slot => {
+          slot.classList.remove('selected');
+      });
+
+      // Add selection
+      element.classList.add('selected');
+      selectedTime = time;
+
+      document.getElementById('bookingForm').classList.add('active');
+  }
+
+  async function makeReservation() {
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+
+      if (!name || !phone) {
+          showError('Vă rugăm să completați toate câmpurile');
+          return;
+      }
+
+      if (!selectedDate || !selectedTime) {
+          showError('Vă rugăm să selectați data și ora');
+          return;
+      }
+
+      const reservation = {
+          date: selectedDate.toISOString().split('T')[0],
+          time: selectedTime,
+          name: name,
+          phone: phone
+      };
+
+      try {
+          const response = await fetch(`${API_BASE}/bookings`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(reservation)
+          });
+
+          if (response.ok) {
+              showSuccess(`Rezervarea a fost confirmată pentru ${selectedDate.toLocaleDateString('ro-RO')} la ora ${selectedTime}`);
+              resetForm();
+              loadTimeSlots(selectedDate); // Refresh time slots
+          } else {
+              const error = await response.json();
+              showError(error.message || 'Eroare la salvarea rezervării');
+          }
+      } catch (error) {
+          showError('Eroare de conexiune. Vă rugăm încercați din nou.');
+      }
+  }
+
+  function resetForm() {
+      document.getElementById('clientName').value = '';
+      document.getElementById('clientPhone').value = '';
+      document.getElementById('bookingForm').classList.remove('active');
+      selectedTime = null;
+
+      document.querySelectorAll('.time-slot').forEach(slot => {
+          slot.classList.remove('selected');
+      });
+  }
+
+  function showSuccess(message) {
+      const successDiv = document.getElementById('successMessage');
+      successDiv.textContent = message;
+      successDiv.style.display = 'block';
+
+      setTimeout(() => {
+          successDiv.style.display = 'none';
+      }, 5000);
+  }
+
+  function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+
+      setTimeout(() => {
+          errorDiv.style.display = 'none';
+      }, 5000);
+  }
+
   function toggleMap() {
       const mapContainer = document.getElementById('mapContainer');
       const button = document.querySelector('.location-btn');
@@ -351,6 +795,9 @@
           button.textContent = 'Ascunde Harta';
       }
   }
+
+  // Initialize calendar when page loads
+  document.addEventListener('DOMContentLoaded', initializeCalendar);
 </script>
 </body>
 </html>
