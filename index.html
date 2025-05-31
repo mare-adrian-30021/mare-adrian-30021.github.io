@@ -596,6 +596,16 @@
                   'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
   const days = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
 
+  // FUNCȚIA CHEIE PENTRU FIX-UL TIMEZONE
+  function formatDateForAPI(date) {
+    // Folosește getFullYear(), getMonth(), getDate() pentru a evita problemele de timezone
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // +1 pentru că getMonth() returnează 0-11
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
+
   function initializeCalendar() {
       renderCalendar();
   }
@@ -662,15 +672,25 @@
       event.target.classList.add('selected');
 
       selectedDate = date;
+
+      // DEBUG: Vezi ce dată este selectată
+      console.log('Data selectată:', date);
+      console.log('Data formatată pentru API:', formatDateForAPI(date));
+
       loadTimeSlots(date);
   }
 
   async function loadTimeSlots(date) {
-      const dateStr = date.toISOString().split('T')[0];
+      // FOLOSEȘTE FUNCȚIA FIXATĂ PENTRU FORMATAREA DATEI
+      const dateStr = formatDateForAPI(date);
+
+      console.log('Încărcare slots pentru data:', dateStr); // DEBUG
 
       try {
           const response = await fetch(`${API_BASE}/bookings/${dateStr}`);
           const bookedSlots = await response.json();
+
+          console.log('Slots ocupate:', bookedSlots); // DEBUG
 
           const timeSlotsContainer = document.getElementById('timeSlotsList');
           timeSlotsContainer.innerHTML = '';
@@ -692,6 +712,7 @@
 
           document.getElementById('timeSlots').classList.add('active');
       } catch (error) {
+          console.error('Eroare la încărcarea orelor:', error);
           showError('Eroare la încărcarea orelor disponibile');
       }
   }
@@ -723,12 +744,17 @@
           return;
       }
 
+      // FOLOSEȘTE FUNCȚIA FIXATĂ PENTRU FORMATAREA DATEI
+      const dateStr = formatDateForAPI(selectedDate);
+
       const reservation = {
-          date: selectedDate.toISOString().split('T')[0],
+          date: dateStr, // Data formatată corect
           time: selectedTime,
           name: name,
           phone: phone
       };
+
+      console.log('Trimite rezervarea:', reservation); // DEBUG
 
       try {
           const response = await fetch(`${API_BASE}/bookings`, {
@@ -740,14 +766,19 @@
           });
 
           if (response.ok) {
+              const result = await response.json();
+              console.log('Rezervare confirmată:', result); // DEBUG
+
               showSuccess(`Rezervarea a fost confirmată pentru ${selectedDate.toLocaleDateString('ro-RO')} la ora ${selectedTime}`);
               resetForm();
               loadTimeSlots(selectedDate); // Refresh time slots
           } else {
               const error = await response.json();
+              console.error('Eroare server:', error);
               showError(error.message || 'Eroare la salvarea rezervării');
           }
       } catch (error) {
+          console.error('Eroare de conexiune:', error);
           showError('Eroare de conexiune. Vă rugăm încercați din nou.');
       }
   }
