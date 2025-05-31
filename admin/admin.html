@@ -28,6 +28,20 @@
             color: var(--text-white);
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: auto;
+            z-index: 9999;
+            opacity: 1;
+            border: 2px solid var(--accent-gold);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(198, 165, 92, 0.5);
         }
 
         .container {
@@ -406,6 +420,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<img src="fundalt.jpg" alt="Background" class="background-image">
 <div class="container">
     <div class="header">
         <h1>🔧 Admin Panel</h1>
