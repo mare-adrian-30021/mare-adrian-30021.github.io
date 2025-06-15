@@ -3,832 +3,1079 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luca Barbershop - Frizerie Premium</title>
+  <title>Asigurarea Ta Ideală - Află ce ți se potrivește în mai puțin de 1 minut</title>
   <style>
-    :root {
-        --primary-black: #1a1a1a;
-        --secondary-black: #2d2d2d;
-        --accent-gold: #c6a55c;
-        --text-white: #ffffff;
-        --text-gray: #cccccc;
-    }
-
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
     }
 
     body {
-        background-color: var(--primary-black);
-        color: var(--text-white);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
     }
 
-    header {
-        background-color: var(--secondary-black);
-        padding: 0.5rem 5%;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .logo-image {
-        height: 80px;
-        width: auto;
-    }
-
-    .logo {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: var(--accent-gold);
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 2rem;
-    }
-
-    .nav-links a {
-        color: var(--text-white);
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-        color: var(--accent-gold);
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
     }
 
     .hero {
-        height: 100vh;
-        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                    url('pozehudac/background.jpg') center 30% / cover;
+        text-align: center;
+        color: white;
+        margin-bottom: 40px;
+        padding: 40px 20px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .benefits {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+
+    .benefit {
+        background: rgba(255,255,255,0.2);
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.3);
+        text-align: center;
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .benefit-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .form-container {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        margin-bottom: 40px;
+    }
+
+    .form-step {
+        display: none;
+    }
+
+    .form-step.active {
+        display: block;
+        animation: slideIn 0.5s ease-in-out;
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    .step-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .step-counter {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        padding: 0 5%;
-        position: relative;
-    }
-
-    .hero-content h1 {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        color: var(--accent-gold);
-    }
-
-    .hero-content p {
-        font-size: 1.2rem;
-        color: var(--text-gray);
-        margin-bottom: 2rem;
-    }
-
-    /* Chenar Programare */
-    .booking-panel {
-        position: fixed;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 350px;
-        background: var(--secondary-black);
-        border: 2px solid var(--accent-gold);
-        border-radius: 15px;
-        padding: 1.5rem;
-        z-index: 999;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-
-    .booking-panel h3 {
-        color: var(--accent-gold);
-        text-align: center;
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-    }
-
-    .calendar-container {
-        margin-bottom: 1rem;
-    }
-
-    .calendar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-
-    .calendar-nav {
-        background: var(--accent-gold);
-        color: var(--primary-black);
-        border: none;
-        padding: 0.5rem;
-        border-radius: 5px;
-        cursor: pointer;
+        margin: 0 auto 15px;
         font-weight: bold;
-    }
-
-    .calendar-month {
-        color: var(--accent-gold);
-        font-weight: bold;
-    }
-
-    .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 5px;
-        margin-bottom: 1rem;
-    }
-
-    .calendar-day {
-        background: var(--primary-black);
-        color: var(--text-white);
-        border: 1px solid var(--accent-gold);
-        padding: 0.5rem;
-        text-align: center;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: all 0.3s;
-        font-size: 0.9rem;
-    }
-
-    .calendar-day:hover {
-        background: var(--accent-gold);
-        color: var(--primary-black);
-    }
-
-    .calendar-day.selected {
-        background: var(--accent-gold);
-        color: var(--primary-black);
-        font-weight: bold;
-    }
-
-    .calendar-day.disabled {
-        background: #555;
-        color: #999;
-        cursor: not-allowed;
-    }
-
-    .calendar-day.disabled:hover {
-        background: #555;
-        color: #999;
-    }
-
-    .day-header {
-        color: var(--accent-gold);
-        font-weight: bold;
-        text-align: center;
-        padding: 0.5rem;
-        font-size: 0.8rem;
-    }
-
-    .time-slots {
-        margin: 1rem 0;
-        display: none;
-    }
-
-    .time-slots.active {
-        display: block;
-    }
-
-    .time-slot {
-        background: var(--primary-black);
-        color: var(--text-white);
-        border: 1px solid var(--accent-gold);
-        padding: 0.7rem;
-        margin: 0.3rem 0;
-        text-align: center;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: all 0.3s;
-    }
-
-    .time-slot:hover {
-        background: var(--accent-gold);
-        color: var(--primary-black);
-    }
-
-    .time-slot.selected {
-        background: var(--accent-gold);
-        color: var(--primary-black);
-        font-weight: bold;
-    }
-
-    .time-slot.occupied {
-        background: #8b0000;
-        color: #ccc;
-        cursor: not-allowed;
-        opacity: 0.6;
-    }
-
-    .time-slot.occupied:hover {
-        background: #8b0000;
-        color: #ccc;
-    }
-
-    .booking-form {
-        margin-top: 1rem;
-        display: none;
-    }
-
-    .booking-form.active {
-        display: block;
     }
 
     .form-group {
-        margin-bottom: 1rem;
+        margin-bottom: 25px;
     }
 
-    .form-group label {
+    label {
         display: block;
-        color: var(--accent-gold);
-        margin-bottom: 0.5rem;
-        font-weight: bold;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
     }
 
-    .form-group input {
+    input, select {
         width: 100%;
-        padding: 0.7rem;
-        background: var(--primary-black);
-        color: var(--text-white);
-        border: 1px solid var(--accent-gold);
-        border-radius: 5px;
-        font-size: 1rem;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: all 0.3s ease;
     }
 
-    .form-group input:focus {
+    input:focus, select:focus {
         outline: none;
-        border-color: var(--accent-gold);
-        box-shadow: 0 0 5px rgba(198, 165, 92, 0.3);
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
 
-    .services {
-        padding: 5rem 5%;
-        background-color: var(--secondary-black);
-    }
-
-    .section-title {
-        text-align: center;
-        color: var(--accent-gold);
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-    }
-
-    .services-grid {
+    .checkbox-group {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
+        gap: 15px;
+        margin-top: 10px;
     }
 
-    .service-card {
-        background-color: var(--primary-black);
-        padding: 2rem;
-        border-radius: 8px;
-        text-align: center;
-        transition: transform 0.3s;
+    .checkbox-item {
+        position: relative;
     }
 
-    .service-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .service-card h3 {
-        color: var(--accent-gold);
-        margin: 1rem 0;
-    }
-
-    .about {
-        padding: 5rem 5%;
-    }
-
-    .about-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .about-image {
-        width: 100%;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-
-    .about-content h2 {
-        color: var(--accent-gold);
-        margin-bottom: 1.5rem;
-    }
-
-    .contact {
-        padding: 5rem 5%;
-        background-color: var(--secondary-black);
-    }
-
-    .contact-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .contact-info {
-        line-height: 2;
-    }
-
-    .contact-info h3 {
-        color: var(--accent-gold);
-        margin-bottom: 1rem;
-    }
-
-    .map-container {
-        width: 100%;
-        height: 400px;
-        border-radius: 10px;
-        overflow: hidden;
+    .checkbox-item input[type="checkbox"] {
         display: none;
-        margin-top: 2rem;
     }
 
-    .map-container.active {
+    .checkbox-item label {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: white;
+    }
+
+    .checkbox-item label:hover {
+        border-color: #667eea;
+        background: #f8f9ff;
+    }
+
+    .checkbox-item input[type="checkbox"]:checked + label {
+        border-color: #667eea;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+    }
+
+    .checkbox-item .icon {
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .radio-item {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .radio-item input[type="radio"] {
+        display: none;
+    }
+
+    .radio-item label {
         display: block;
+        padding: 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: white;
+    }
+
+    .radio-item input[type="radio"]:checked + label {
+        border-color: #667eea;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
     }
 
     .btn {
-        display: inline-block;
-        padding: 1rem 2rem;
-        background-color: var(--accent-gold);
-        color: var(--primary-black);
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        transition: transform 0.3s;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
         border: none;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
         cursor: pointer;
+        transition: all 0.3s ease;
         width: 100%;
-        text-align: center;
-        font-size: 1rem;
+        margin-top: 20px;
     }
 
     .btn:hover {
-        transform: translateY(-3px);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
     }
 
-    .location-btn {
-        display: block;
-        margin: 0 auto;
+    .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+        margin-right: 15px;
         width: auto;
     }
 
-    footer {
-        background-color: var(--primary-black);
-        padding: 2rem 5%;
-        text-align: center;
-        color: var(--text-gray);
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
     }
 
-    .success-message {
-        background: #4CAF50;
-        color: white;
-        padding: 1rem;
-        border-radius: 5px;
-        margin: 1rem 0;
-        text-align: center;
+    .results {
         display: none;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
     }
 
-    .error-message {
-        background: #f44336;
-        color: white;
-        padding: 1rem;
-        border-radius: 5px;
-        margin: 1rem 0;
+    .results.show {
+        display: block;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .results-header {
         text-align: center;
-        display: none;
+        margin-bottom: 40px;
+    }
+
+    .results-header h2 {
+        color: #333;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .recommendation-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+    }
+
+    .recommendation-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .recommendation-details {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .bonus-section {
+        background: #f8f9ff;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 30px 0;
+        text-align: center;
+        border: 2px dashed #667eea;
+    }
+
+    .bonus-section h3 {
+        color: #667eea;
+        margin-bottom: 15px;
+    }
+
+    .contact-section {
+        background: linear-gradient(45deg, #28a745, #20c997);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        transition: width 0.5s ease;
+        border-radius: 3px;
     }
 
     @media (max-width: 768px) {
-        .about-container {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+        .benefits {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-container {
+            padding: 20px;
+        }
+
+        .radio-group {
+            flex-direction: column;
+        }
+
+        .checkbox-group {
             grid-template-columns: 1fr;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-        }
-
-        .nav-links {
-            display: none;
-        }
-
-        .booking-panel {
-            position: relative;
-            right: auto;
-            top: auto;
-            transform: none;
-            width: 100%;
-            margin: 2rem 0;
         }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <nav>
-    <div class="logo-container">
-      <img src="pozehudac/logo.png" alt="Luca Barbershop Logo" class="logo-image">
-      <div class="logo">Luca Barbershop</div>
+<div class="container">
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>🏠 Asigurarea Ta Ideală</h1>
+    <p>Completează formularul și află ce tip de asigurare e ideal pentru tine – în funcție de vârstă, venit, stil de viață și priorități.</p>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">🎯</div>
+        <h3>Personalizare Completă</h3>
+        <p>Recomandări bazate pe profilul tău unic</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🔒</div>
+        <h3>Confidențialitate</h3>
+        <p>Datele tale sunt protejate 100%</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">💬</div>
+        <h3>Consultanță Gratuită</h3>
+        <p>Specialist dedicat în 24 ore</p>
+      </div>
     </div>
-    <div class="nav-links">
-      <a href="#home">Acasă</a>
-      <a href="#services">Servicii</a>
-      <a href="#about">Despre</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-</header>
-
-<!-- Chenar Programare -->
-<div class="booking-panel">
-  <h3>Programează-te la tuns</h3>
-
-  <div class="calendar-container">
-    <div class="calendar-header">
-      <button class="calendar-nav" onclick="changeMonth(-1)">‹</button>
-      <div class="calendar-month" id="currentMonth"></div>
-      <button class="calendar-nav" onclick="changeMonth(1)">›</button>
-    </div>
-    <div class="calendar-grid" id="calendarGrid"></div>
   </div>
 
-  <div class="time-slots" id="timeSlots">
-    <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Alege ora:</h4>
-    <div id="timeSlotsList"></div>
+  <!-- Form Container -->
+  <div class="form-container">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <form id="insuranceForm">
+      <!-- Step 1: Age -->
+      <div class="form-step active" id="step1">
+        <div class="step-header">
+          <div class="step-counter">1</div>
+          <h2>Care este vârsta ta?</h2>
+        </div>
+        <div class="form-group">
+          <label for="age">Vârsta (ani)</label>
+          <input type="number" id="age" name="age" min="18" max="100" required>
+        </div>
+        <div class="navigation">
+          <div></div>
+          <button type="button" class="btn" onclick="nextStep()">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Salary -->
+      <div class="form-step" id="step2">
+        <div class="step-header">
+          <div class="step-counter">2</div>
+          <h2>Care este salariul tău net lunar?</h2>
+        </div>
+        <div class="form-group">
+          <label for="salary">Salariu net (RON)</label>
+          <select id="salary" name="salary" required>
+            <option value="">Selectează intervalul</option>
+            <option value="sub1500">Sub 1.500 RON</option>
+            <option value="1500-3000">1.500 - 3.000 RON</option>
+            <option value="3000-5000">3.000 - 5.000 RON</option>
+            <option value="5000-8000">5.000 - 8.000 RON</option>
+            <option value="peste8000">Peste 8.000 RON</option>
+          </select>
+        </div>
+        <div class="navigation">
+          <button type="button" class="btn btn-secondary" onclick="prevStep()">Înapoi</button>
+          <button type="button" class="btn" onclick="nextStep()">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Interests -->
+      <div class="form-step" id="step3">
+        <div class="step-header">
+          <div class="step-counter">3</div>
+          <h2>Ce te interesează? (poți selecta mai multe)</h2>
+        </div>
+        <div class="form-group">
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="pensii" name="interests" value="pensii">
+              <label for="pensii"><span class="icon">💰</span>Pensii Private</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="vacanta" name="interests" value="vacanta">
+              <label for="vacanta"><span class="icon">✈️</span>Asigurări Vacanță</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="sanatate" name="interests" value="sanatate">
+              <label for="sanatate"><span class="icon">🏥</span>Asigurări Sănătate</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="viata" name="interests" value="viata">
+              <label for="viata"><span class="icon">👨‍👩‍👧‍👦</span>Asigurări de Viață</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="locuinta" name="interests" value="locuinta">
+              <label for="locuinta"><span class="icon">🏠</span>Asigurări Locuință</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="masina" name="interests" value="masina">
+              <label for="masina"><span class="icon">🚗</span>Asigurări Auto</label>
+            </div>
+          </div>
+        </div>
+        <div class="navigation">
+          <button type="button" class="btn btn-secondary" onclick="prevStep()">Înapoi</button>
+          <button type="button" class="btn" onclick="nextStep()">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Assets -->
+      <div class="form-step" id="step4">
+        <div class="step-header">
+          <div class="step-counter">4</div>
+          <h2>Ce deții în prezent?</h2>
+        </div>
+        <div class="form-group">
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="masina_only" name="assets" value="masina" required>
+              <label for="masina_only">🚗<br>Doar Mașină</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="casa_only" name="assets" value="casa" required>
+              <label for="casa_only">🏠<br>Doar Casă</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="ambele" name="assets" value="ambele" required>
+              <label for="ambele">🏠🚗<br>Ambele</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="nimic" name="assets" value="nimic" required>
+              <label for="nimic">❌<br>Nimic</label>
+            </div>
+          </div>
+        </div>
+        <div class="navigation">
+          <button type="button" class="btn btn-secondary" onclick="prevStep()">Înapoi</button>
+          <button type="button" class="btn" onclick="nextStep()">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Family -->
+      <div class="form-step" id="step5">
+        <div class="step-header">
+          <div class="step-counter">5</div>
+          <h2>Ai familie sau copii?</h2>
+        </div>
+        <div class="form-group">
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="cu_familie" name="family" value="da" required>
+              <label for="cu_familie">👨‍👩‍👧‍👦<br>Da, am familie/copii</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="fara_familie" name="family" value="nu" required>
+              <label for="fara_familie">👤<br>Nu, sunt singur(ă)</label>
+            </div>
+          </div>
+        </div>
+        <div class="navigation">
+          <button type="button" class="btn btn-secondary" onclick="prevStep()">Înapoi</button>
+          <button type="button" class="btn" onclick="nextStep()">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 6: Results Preview -->
+      <div class="form-step" id="step6">
+        <div class="step-header">
+          <div class="step-counter">6</div>
+          <h2>🎯 Recomandarea Ta Personalizată</h2>
+        </div>
+
+        <div class="recommendation-card" id="previewCard">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+
+        <div class="bonus-section">
+          <h3>🎁 Bonus Exclusiv pentru Tine!</h3>
+          <p><strong>Ghidul PDF Gratuit:</strong> "Cum alegi o asigurare potrivită fără să fii păcălit"</p>
+          <p>Vei primi acest ghid complet prin email</p>
+        </div>
+
+        <div class="step-header" style="margin-top: 40px;">
+          <h2>💬 Vrei să vorbești cu un specialist?</h2>
+          <p style="font-size: 1.1rem; color: #666; margin-top: 15px;">
+            Un consultant autorizat te poate ajuta să îți personalizezi și mai mult asigurările și să răspundă la toate întrebările tale.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="specialist_da" name="specialist" value="da" required>
+              <label for="specialist_da">✅<br>Da, vreau să vorbesc cu un specialist</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="specialist_nu" name="specialist" value="nu" required>
+              <label for="specialist_nu">📄<br>Nu, doar vreau ghidul PDF</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="navigation">
+          <button type="button" class="btn btn-secondary" onclick="prevStep()">Înapoi</button>
+          <button type="button" class="btn" onclick="handleSpecialistChoice()">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 7: Contact (only if specialist chosen) -->
+      <div class="form-step" id="step7">
+        <div class="step-header">
+          <div class="step-counter">7</div>
+          <h2>📞 Perfect! Datele tale de contact</h2>
+          <p style="font-size: 1.1rem; color: #666; margin-top: 15px;">
+            Un specialist te va contacta în următoarele 24 de ore pentru o consultație gratuită
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="name">Nume și Prenume</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefon</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="navigation">
+          <button type="button" class="btn btn-secondary" onclick="prevStep()">Înapoi</button>
+          <button type="submit" class="btn">Finalizează & Contactează-mă 📞</button>
+        </div>
+      </div>
+
+      <!-- Step 7 Alternative: Only Email (if no specialist) -->
+      <div class="form-step" id="step7-email">
+        <div class="step-header">
+          <div class="step-counter">7</div>
+          <h2>📧 Email pentru Ghidul PDF</h2>
+          <p style="font-size: 1.1rem; color: #666; margin-top: 15px;">
+            Îți vom trimite ghidul PDF gratuit la adresa de email
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="email-only">Email</label>
+          <input type="email" id="email-only" name="email-only" required>
+        </div>
+        <div class="navigation">
+          <button type="button" class="btn btn-secondary" onclick="prevStep()">Înapoi</button>
+          <button type="submit" class="btn">Trimite Ghidul PDF 📄</button>
+        </div>
+      </div>
+    </form>
   </div>
 
-  <div class="booking-form" id="bookingForm">
-    <div class="form-group">
-      <label for="clientName">Nume complet:</label>
-      <input type="text" id="clientName" required>
+  <!-- Results Section -->
+  <div class="results" id="results">
+    <div class="results-header">
+      <h2>🎯 Recomandările Tale Personalizate</h2>
+      <p>Pe baza răspunsurilor tale, am identificat asigurările ideale pentru profilul tău</p>
     </div>
-    <div class="form-group">
-      <label for="clientPhone">Număr de telefon:</label>
-      <input type="tel" id="clientPhone" required>
-    </div>
-    <button class="btn" onclick="makeReservation()">Rezervă</button>
-  </div>
 
-  <div class="success-message" id="successMessage"></div>
-  <div class="error-message" id="errorMessage"></div>
+    <div class="recommendation-card" id="recommendationCard">
+      <!-- Dynamic content will be inserted here -->
+    </div>
+
+    <div class="bonus-section">
+      <h3>🎁 Bonus Exclusiv pentru Tine!</h3>
+      <p><strong>Ghidul PDF Gratuit:</strong> "Cum alegi o asigurare potrivită fără să fii păcălit"</p>
+      <p>Vei primi acest ghid complet prin email în următoarele minute</p>
+    </div>
+
+    <div class="contact-section">
+      <h3>✨ Urmează pasul final!</h3>
+      <p>Am generat opțiunile ideale pentru tine. Un consultant autorizat va lua legătura cu tine în 24h pentru o discuție gratuită.</p>
+      <p><strong>📱 Prenume:</strong> <span id="userName"></span> | <strong>📧 Email:</strong> <span id="userEmail"></span> | <strong>☎️ Telefon:</strong> <span id="userPhone"></span></p>
+      <button class="btn" style="margin-top: 20px; background: rgba(255,255,255,0.2); border: 2px solid white;">
+        📞 Programează discuția acum
+      </button>
+    </div>
+  </div>
 </div>
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <h1>Luca Barbershop</h1>
-    <p>Artă și profesionalism în fiecare tunsoare</p>
-    <a href="#contact" class="btn">Programează-te acum</a>
-  </div>
-</section>
-
-<section class="services" id="services">
-  <h2 class="section-title">Serviciile Mele</h2>
-  <div class="services-grid">
-    <div class="service-card">
-      <h3>Tuns Bărbătesc</h3>
-      <p>Tunsori moderne sau clasice, adaptate stilului tău personal</p>
-      <p class="price">de la 50 RON</p>
-    </div>
-    <div class="service-card">
-      <h3>Aranjat Barbă</h3>
-      <p>Îngrijire completă a bărbii, conturare și styling profesional</p>
-      <p class="price">de la 35 RON</p>
-    </div>
-    <div class="service-card">
-      <h3>Bărbierit Tradițional</h3>
-      <p>Bărbierit cu briciul și tratament facial relaxant</p>
-      <p class="price">de la 45 RON</p>
-    </div>
-    <div class="service-card">
-      <h3>Pachet Complet</h3>
-      <p>Tuns, aranjat barbă și îngrijire facială</p>
-      <p class="price">de la 120 RON</p>
-    </div>
-  </div>
-</section>
-
-<section class="about" id="about">
-  <div class="about-container">
-    <img src="pozehudac/luca.jpg" alt="Luca - Master Barber" class="about-image">
-    <div class="about-content">
-      <h2>Despre Mine</h2>
-      <p>Cu peste 10 ani de experiență în arta frizeriei, sunt dedicat să ofer clienților mei cele mai bune servicii și cele mai moderne stiluri. Fiecare client care îmi pășește în salon primește atenție personalizată și un look perfect adaptat personalității sale.</p>
-      <p>Specializat în tunsori moderne și clasice, precum și în îngrijirea bărbii, folosesc cele mai bune tehnici și produse pentru a asigura rezultate excepționale de fiecare dată.</p>
-      <a href="#contact" class="btn" style="margin-top: 1rem;">Contactează-mă</a>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <div class="contact-container">
-    <h2 class="section-title">Contact & Program</h2>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Program</h3>
-        <p>Luni - Vineri: 10:00 - 20:00</p>
-        <p>Sâmbătă: 10:00 - 18:00</p>
-        <p>Duminică: Închis</p>
-      </div>
-      <div class="contact-info">
-        <h3>Contact</h3>
-        <p>Telefon: 0722 123 456</p>
-        <p>Email: contact@lucabarbershop.ro</p>
-        <p>Adresă: Strada Exemplu nr. 123, București</p>
-      </div>
-    </div>
-
-    <button class="btn location-btn" onclick="toggleMap()">Vezi Locația pe Hartă</button>
-
-    <div class="map-container" id="mapContainer">
-      <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.8485613461455!2d26.1019453!3d44.4267674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4470220b8f%3A0x10c06031d35785cf!2sUniversitatea%20din%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1650000000000!5m2!1sro!2sro"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2024 Luca Barbershop. Toate drepturile rezervate.</p>
-</footer>
-
 <script>
-  let currentDate = new Date();
-  let selectedDate = null;
-  let selectedTime = null;
-  const API_BASE = 'http://localhost:3000/api';
+  let currentStep = 1;
+  const totalSteps = 7;
+  let wantsSpecialist = false;
 
-  const timeSlots = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
-  const months = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
-                  'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
-  const days = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
-
-  // FUNCȚIA CHEIE PENTRU FIX-UL TIMEZONE
-  function formatDateForAPI(date) {
-    // Folosește getFullYear(), getMonth(), getDate() pentru a evita problemele de timezone
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // +1 pentru că getMonth() returnează 0-11
-    const day = String(date.getDate()).padStart(2, '0');
-
-    return `${year}-${month}-${day}`;
+  function updateProgress() {
+      const progress = (currentStep / totalSteps) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
   }
 
-  function initializeCalendar() {
-      renderCalendar();
-  }
+  function nextStep() {
+      const currentStepElement = document.getElementById(`step${currentStep}`);
 
-  function renderCalendar() {
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth();
-
-      document.getElementById('currentMonth').textContent = `${months[month]} ${year}`;
-
-      const calendarGrid = document.getElementById('calendarGrid');
-      calendarGrid.innerHTML = '';
-
-      // Add day headers
-      days.forEach(day => {
-          const dayHeader = document.createElement('div');
-          dayHeader.className = 'day-header';
-          dayHeader.textContent = day;
-          calendarGrid.appendChild(dayHeader);
-      });
-
-      const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
-      const startDate = new Date(firstDay);
-      startDate.setDate(startDate.getDate() - (firstDay.getDay() || 7) + 1);
-
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      for (let i = 0; i < 42; i++) {
-          const date = new Date(startDate);
-          date.setDate(startDate.getDate() + i);
-
-          const dayElement = document.createElement('div');
-          dayElement.className = 'calendar-day';
-          dayElement.textContent = date.getDate();
-
-          if (date.getMonth() !== month) {
-              dayElement.style.opacity = '0.3';
-          }
-
-          if (date < today) {
-              dayElement.classList.add('disabled');
-          } else {
-              dayElement.onclick = () => selectDate(date);
-          }
-
-          calendarGrid.appendChild(dayElement);
-      }
-  }
-
-  function changeMonth(direction) {
-      currentDate.setMonth(currentDate.getMonth() + direction);
-      renderCalendar();
-  }
-
-  function selectDate(date) {
-      // Remove previous selection
-      document.querySelectorAll('.calendar-day').forEach(day => {
-          day.classList.remove('selected');
-      });
-
-      // Add selection to clicked day
-      event.target.classList.add('selected');
-
-      selectedDate = date;
-
-      // DEBUG: Vezi ce dată este selectată
-      console.log('Data selectată:', date);
-      console.log('Data formatată pentru API:', formatDateForAPI(date));
-
-      loadTimeSlots(date);
-  }
-
-  async function loadTimeSlots(date) {
-      // FOLOSEȘTE FUNCȚIA FIXATĂ PENTRU FORMATAREA DATEI
-      const dateStr = formatDateForAPI(date);
-
-      console.log('Încărcare slots pentru data:', dateStr); // DEBUG
-
-      try {
-          const response = await fetch(`${API_BASE}/bookings/${dateStr}`);
-          const bookedSlots = await response.json();
-
-          console.log('Slots ocupate:', bookedSlots); // DEBUG
-
-          const timeSlotsContainer = document.getElementById('timeSlotsList');
-          timeSlotsContainer.innerHTML = '';
-
-          timeSlots.forEach(time => {
-              const slot = document.createElement('div');
-              slot.className = 'time-slot';
-              slot.textContent = time;
-
-              if (bookedSlots.includes(time)) {
-                  slot.classList.add('occupied');
-                  slot.textContent += ' (Ocupat)';
-              } else {
-                  slot.onclick = () => selectTime(time, slot);
-              }
-
-              timeSlotsContainer.appendChild(slot);
-          });
-
-          document.getElementById('timeSlots').classList.add('active');
-      } catch (error) {
-          console.error('Eroare la încărcarea orelor:', error);
-          showError('Eroare la încărcarea orelor disponibile');
-      }
-  }
-
-  function selectTime(time, element) {
-      // Remove previous selection
-      document.querySelectorAll('.time-slot').forEach(slot => {
-          slot.classList.remove('selected');
-      });
-
-      // Add selection
-      element.classList.add('selected');
-      selectedTime = time;
-
-      document.getElementById('bookingForm').classList.add('active');
-  }
-
-  async function makeReservation() {
-      const name = document.getElementById('clientName').value.trim();
-      const phone = document.getElementById('clientPhone').value.trim();
-
-      if (!name || !phone) {
-          showError('Vă rugăm să completați toate câmpurile');
+      // Validate current step
+      if (!validateStep(currentStep)) {
           return;
       }
 
-      if (!selectedDate || !selectedTime) {
-          showError('Vă rugăm să selectați data și ora');
+      // Special handling for step 5 - generate preview
+      if (currentStep === 5) {
+          generatePreview();
+      }
+
+      currentStepElement.classList.remove('active');
+      currentStep++;
+
+      if (currentStep <= totalSteps) {
+          document.getElementById(`step${currentStep}`).classList.add('active');
+          updateProgress();
+      }
+  }
+
+  function handleSpecialistChoice() {
+      const specialist = document.querySelector('input[name="specialist"]:checked');
+      if (!specialist) {
+          alert('Te rugăm să selectezi o opțiune');
           return;
       }
 
-      // FOLOSEȘTE FUNCȚIA FIXATĂ PENTRU FORMATAREA DATEI
-      const dateStr = formatDateForAPI(selectedDate);
+      wantsSpecialist = specialist.value === 'da';
 
-      const reservation = {
-          date: dateStr, // Data formatată corect
-          time: selectedTime,
-          name: name,
-          phone: phone
+      document.getElementById('step6').classList.remove('active');
+      currentStep = 7;
+
+      if (wantsSpecialist) {
+          document.getElementById('step7').classList.add('active');
+      } else {
+          document.getElementById('step7-email').classList.add('active');
+      }
+
+      updateProgress();
+  }
+
+  function generatePreview() {
+      // Collect current form data
+      const formData = {
+          age: document.getElementById('age').value,
+          salary: document.getElementById('salary').value,
+          interests: Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value),
+          assets: document.querySelector('input[name="assets"]:checked').value,
+          family: document.querySelector('input[name="family"]:checked').value
       };
 
-      console.log('Trimite rezervarea:', reservation); // DEBUG
+      // Generate recommendation
+      const recommendation = generateRecommendation(formData);
 
-      try {
-          const response = await fetch(`${API_BASE}/bookings`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(reservation)
-          });
+      // Display in preview card
+      document.getElementById('previewCard').innerHTML = `
+          <div class="recommendation-title">${recommendation.title}</div>
+          <div class="recommendation-details">
+              ${recommendation.details}
+              <br><br><strong>De ce este perfect pentru tine:</strong><br>
+              ${recommendation.motivation}
+          </div>
+      `;
+  }
 
-          if (response.ok) {
-              const result = await response.json();
-              console.log('Rezervare confirmată:', result); // DEBUG
+  function prevStep() {
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      currentStep--;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+      updateProgress();
+  }
 
-              showSuccess(`Rezervarea a fost confirmată pentru ${selectedDate.toLocaleDateString('ro-RO')} la ora ${selectedTime}`);
-              resetForm();
-              loadTimeSlots(selectedDate); // Refresh time slots
+  function validateStep(step) {
+      switch(step) {
+          case 1:
+              const age = document.getElementById('age').value;
+              if (!age || age < 18 || age > 100) {
+                  alert('Te rugăm să introduci o vârstă validă (18-100 ani)');
+                  return false;
+              }
+              break;
+          case 2:
+              const salary = document.getElementById('salary').value;
+              if (!salary) {
+                  alert('Te rugăm să selectezi intervalul salariului');
+                  return false;
+              }
+              break;
+          case 3:
+              const interests = document.querySelectorAll('input[name="interests"]:checked');
+              if (interests.length === 0) {
+                  alert('Te rugăm să selectezi cel puțin o opțiune');
+                  return false;
+              }
+              break;
+          case 4:
+              const assets = document.querySelector('input[name="assets"]:checked');
+              if (!assets) {
+                  alert('Te rugăm să selectezi o opțiune');
+                  return false;
+              }
+              break;
+          case 5:
+              const family = document.querySelector('input[name="family"]:checked');
+              if (!family) {
+                  alert('Te rugăm să selectezi o opțiune');
+                  return false;
+              }
+              break;
+          case 6:
+              const specialist = document.querySelector('input[name="specialist"]:checked');
+              if (!specialist) {
+                  alert('Te rugăm să selectezi o opțiune');
+                  return false;
+              }
+              break;
+          case 7:
+              if (wantsSpecialist) {
+                  const name = document.getElementById('name').value;
+                  const phone = document.getElementById('phone').value;
+                  const email = document.getElementById('email').value;
+                  if (!name || !phone || !email) {
+                      alert('Te rugăm să completezi toate câmpurile de contact');
+                      return false;
+                  }
+              } else {
+                  const emailOnly = document.getElementById('email-only').value;
+                  if (!emailOnly) {
+                      alert('Te rugăm să introduci adresa de email');
+                      return false;
+                  }
+              }
+              break;
+      }
+      return true;
+  }
+
+  function generateRecommendation(formData) {
+      const age = parseInt(formData.age);
+      const salary = formData.salary;
+      const interests = formData.interests;
+      const assets = formData.assets;
+      const family = formData.family === 'da';
+
+      // Calculăm profilul de risc și capacitatea financiară
+      const riskProfile = calculateRiskProfile(age, salary, family, assets);
+      const monthlyBudget = getMonthlyBudget(salary);
+
+      let recommendation = {
+          title: '',
+          primaryInsurance: [],
+          savingsPlans: [],
+          details: '',
+          motivation: '',
+          monthlyInvestment: '',
+          timeline: '',
+          specificProducts: []
+      };
+
+      // Analiză comprehensivă bazată pe vârstă și profil
+      if (age < 30) {
+          recommendation.title = `Pachet Start Inteligent (${age} ani)`;
+
+          if (riskProfile === 'conservator') {
+              recommendation.primaryInsurance = ['Sănătate de bază', 'Viață term'];
+              recommendation.savingsPlans = ['Pilon III conservator', 'Depozit structurat'];
+              recommendation.monthlyInvestment = `${Math.round(monthlyBudget * 0.15)}-${Math.round(monthlyBudget * 0.20)} RON/lună`;
+          } else if (riskProfile === 'moderat') {
+              recommendation.primaryInsurance = ['Sănătate Premium', 'Viață cu acumulare'];
+              recommendation.savingsPlans = ['Pilon III mixt', 'Fond de investiții echilibrat'];
+              recommendation.monthlyInvestment = `${Math.round(monthlyBudget * 0.20)}-${Math.round(monthlyBudget * 0.25)} RON/lună`;
           } else {
-              const error = await response.json();
-              console.error('Eroare server:', error);
-              showError(error.message || 'Eroare la salvarea rezervării');
+              recommendation.primaryInsurance = ['Sănătate International', 'Viață investment-linked'];
+              recommendation.savingsPlans = ['Pilon III agresiv', 'ETF-uri și acțiuni'];
+              recommendation.monthlyInvestment = `${Math.round(monthlyBudget * 0.25)}-${Math.round(monthlyBudget * 0.35)} RON/lună`;
           }
-      } catch (error) {
-          console.error('Eroare de conexiune:', error);
-          showError('Eroare de conexiune. Vă rugăm încercați din nou.');
-      }
-  }
 
-  function resetForm() {
-      document.getElementById('clientName').value = '';
-      document.getElementById('clientPhone').value = '';
-      document.getElementById('bookingForm').classList.remove('active');
-      selectedTime = null;
+          recommendation.timeline = '35-40 ani orizont investițional';
+          recommendation.specificProducts = getSpecificProducts(age, salary, interests, assets, family);
 
-      document.querySelectorAll('.time-slot').forEach(slot => {
-          slot.classList.remove('selected');
-      });
-  }
+      } else if (age >= 30 && age <= 45) {
+          recommendation.title = `Pachet Consolidare (${age} ani)`;
 
-  function showSuccess(message) {
-      const successDiv = document.getElementById('successMessage');
-      successDiv.textContent = message;
-      successDiv.style.display = 'block';
+          if (family) {
+              recommendation.primaryInsurance = ['Sănătate Familie', 'Viață substanțială', 'Educație copii'];
+              recommendation.savingsPlans = ['Pilon III familie', 'Plan educațional copii', 'Fond de urgență'];
+          } else {
+              recommendation.primaryInsurance = ['Sănătate Premium', 'Viață cu acumulare'];
+              recommendation.savingsPlans = ['Pilon III performant', 'Investiții diversificate'];
+          }
 
-      setTimeout(() => {
-          successDiv.style.display = 'none';
-      }, 5000);
-  }
+          recommendation.monthlyInvestment = `${Math.round(monthlyBudget * 0.25)}-${Math.round(monthlyBudget * 0.30)} RON/lună`;
+          recommendation.timeline = '20-25 ani până la pensie';
+          recommendation.specificProducts = getSpecificProducts(age, salary, interests, assets, family);
 
-  function showError(message) {
-      const errorDiv = document.getElementById('errorMessage');
-      errorDiv.textContent = message;
-      errorDiv.style.display = 'block';
+      } else if (age >= 45 && age <= 60) {
+          recommendation.title = `Pachet Pre-Pensionare (${age} ani)`;
 
-      setTimeout(() => {
-          errorDiv.style.display = 'none';
-      }, 5000);
-  }
+          recommendation.primaryInsurance = ['Sănătate extinsă', 'Viață permanentă', 'Îngrijire pe termen lung'];
+          recommendation.savingsPlans = ['Pilon III intensiv', 'Planuri de rentă', 'Protecție patrimoniu'];
+          recommendation.monthlyInvestment = `${Math.round(monthlyBudget * 0.30)}-${Math.round(monthlyBudget * 0.40)} RON/lună`;
+          recommendation.timeline = `${65-age} ani până la pensie`;
+          recommendation.specificProducts = getSpecificProducts(age, salary, interests, assets, family);
 
-  function toggleMap() {
-      const mapContainer = document.getElementById('mapContainer');
-      const button = document.querySelector('.location-btn');
-
-      if (mapContainer.classList.contains('active')) {
-          mapContainer.classList.remove('active');
-          button.textContent = 'Vezi Locația pe Hartă';
       } else {
-          mapContainer.classList.add('active');
-          button.textContent = 'Ascunde Harta';
+          recommendation.title = `Pachet Senior & Moștenire (${age} ani)`;
+
+          recommendation.primaryInsurance = ['Sănătate senior', 'Îngrijire medicală la domiciliu'];
+          recommendation.savingsPlans = ['Rentă viageră', 'Planuri de moștenire'];
+          recommendation.monthlyInvestment = `${Math.round(monthlyBudget * 0.20)}-${Math.round(monthlyBudget * 0.30)} RON/lună`;
+          recommendation.timeline = 'Focus pe protecție și transmitere';
+          recommendation.specificProducts = getSpecificProducts(age, salary, interests, assets, family);
       }
+
+      // Construim detaliile personalizate
+      recommendation.details = buildDetailedRecommendation(recommendation, formData);
+      recommendation.motivation = buildMotivation(age, salary, family, assets, interests);
+
+      return recommendation;
   }
 
-  // Initialize calendar when page loads
-  document.addEventListener('DOMContentLoaded', initializeCalendar);
+  function calculateRiskProfile(age, salary, family, assets) {
+      let score = 0;
+
+      // Vârsta influențează toleranța la risc
+      if (age < 35) score += 3;
+      else if (age < 50) score += 2;
+      else score += 1;
+
+      // Salariul
+      if (salary === 'peste8000') score += 3;
+      else if (salary === '5000-8000') score += 2;
+      else if (salary === '3000-5000') score += 1;
+
+      // Familia reduce toleranța la risc
+      if (family) score -= 1;
+
+      // Activele existente
+      if (assets === 'ambele') score += 1;
+
+      if (score >= 5) return 'agresiv';
+      if (score >= 3) return 'moderat';
+      return 'conservator';
+  }
+
+  function getMonthlyBudget(salary) {
+      const budgets = {
+          'sub1500': 1200,
+          '1500-3000': 2250,
+          '3000-5000': 4000,
+          '5000-8000': 6500,
+          'peste8000': 10000
+      };
+      return budgets[salary] || 2000;
+  }
+
+  function getSpecificProducts(age, salary, interests, assets, family) {
+      let products = [];
+
+      // Produse specifice pe baza intereselor
+      if (interests.includes('pensii')) {
+          if (age < 35) {
+              products.push('NN Pilon III - Fond Activ (randament 8-12% anual)');
+          } else {
+              products.push('BCR Pensii - Fond Echilibrat (randament 6-10% anual)');
+          }
+      }
+
+      if (interests.includes('sanatate')) {
+          if (salary === 'peste8000' || salary === '5000-8000') {
+              products.push('Regina Maria Premium (acoperire internațională)');
+          } else {
+              products.push('MedLife Classic (acoperire națională completă)');
+          }
+      }
+
+      if (interests.includes('viata')) {
+          if (family) {
+              products.push(`Asigurare viață ${Math.round(getMonthlyBudget(salary) * 60)} RON (10x venitul anual)`);
+          } else {
+              products.push(`Asigurare viață ${Math.round(getMonthlyBudget(salary) * 30)} RON (5x venitul anual)`);
+          }
+      }
+
+      if (interests.includes('vacanta')) {
+          products.push('Euroins Travel - Acoperire anuală 150 EUR');
+      }
+
+      if (assets === 'casa' || assets === 'ambele') {
+          products.push('Omniasig Locuință - Acoperire completă cutremur + incendiu');
+      }
+
+      if (assets === 'masina' || assets === 'ambele') {
+          products.push('City Insurance CASCO + RCA pachet complet');
+      }
+
+      return products;
+  }
+
+  function buildDetailedRecommendation(rec, formData) {
+      let details = `<strong>🎯 Plan personalizat pentru profilul tău:</strong><br><br>`;
+
+      details += `<strong>📊 Investiție lunară recomandată:</strong> ${rec.monthlyInvestment}<br>`;
+      details += `<strong>⏰ Orizont temporal:</strong> ${rec.timeline}<br><br>`;
+
+      details += `<strong>🛡️ Asigurări prioritare:</strong><br>`;
+      rec.primaryInsurance.forEach(ins => {
+          details += `• ${ins}<br>`;
+      });
+
+      details += `<br><strong>💰 Planuri de economii/investiții:</strong><br>`;
+      rec.savingsPlans.forEach(plan => {
+          details += `• ${plan}<br>`;
+      });
+
+      if (rec.specificProducts.length > 0) {
+          details += `<br><strong>🏆 Produse recomandate specific:</strong><br>`;
+          rec.specificProducts.forEach(product => {
+              details += `• ${product}<br>`;
+          });
+      }
+
+      return details;
+  }
+
+  function buildMotivation(age, salary, family, assets, interests) {
+      let motivation = '';
+
+      if (age < 30) {
+          motivation = `La ${age} ani, ai avantajul timpului! Recomandările noastre profită de orizontul lung de investiții pentru a-ți maximiza randamentele. `;
+      } else if (age < 45) {
+          motivation = `În această etapă de consolidare (${age} ani), e crucial să echilibrezi protecția cu acumularea. `;
+      } else if (age < 60) {
+          motivation = `Apropiindu-te de pensionare (${age} ani), focusul se mută pe siguranță și optimizarea planurilor existente. `;
+      } else {
+          motivation = `La ${age} ani, prioritatea este protecția patrimoniului și planificarea moștenirii. `;
+      }
+
+      if (family) {
+          motivation += `Având familie, am crescut sumele de protecție și am inclus planuri educaționale pentru copii. `;
+      }
+
+      const budgetLevel = getMonthlyBudget(salary);
+      if (budgetLevel > 6000) {
+          motivation += `Cu venitul tău, poți accesa produse premium cu beneficii extinse și flexibilitate maximă.`;
+      } else if (budgetLevel > 3000) {
+          motivation += `Venitul tău permite o abordare echilibrată între protecție și investiții.`;
+      } else {
+          motivation += `Am optimizat recomandările pentru bugetul tău, focusându-ne pe eficiența costurilor și beneficiile fiscale.`;
+      }
+
+      return motivation;
+  }
+
+  document.getElementById('insuranceForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (!validateStep(7)) {
+          return;
+      }
+
+      // Collect form data
+      const formData = {
+          age: document.getElementById('age').value,
+          salary: document.getElementById('salary').value,
+          interests: Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value),
+          assets: document.querySelector('input[name="assets"]:checked').value,
+          family: document.querySelector('input[name="family"]:checked').value,
+          specialist: wantsSpecialist
+      };
+
+      if (wantsSpecialist) {
+          formData.name = document.getElementById('name').value;
+          formData.phone = document.getElementById('phone').value;
+          formData.email = document.getElementById('email').value;
+      } else {
+          formData.email = document.getElementById('email-only').value;
+      }
+
+      // Generate recommendation
+      const recommendation = generateRecommendation(formData);
+
+      // Display results
+      document.querySelector('.form-container').style.display = 'none';
+      document.getElementById('results').classList.add('show');
+
+      // Populate recommendation card
+      document.getElementById('recommendationCard').innerHTML = `
+          <div class="recommendation-title">${recommendation.title}</div>
+          <div class="recommendation-details">
+              ${recommendation.details}
+              <br><br><strong>De ce este perfect pentru tine:</strong><br>
+              ${recommendation.motivation}
+          </div>
+      `;
+
+      // Update contact section based on choice
+      const contactSection = document.querySelector('.contact-section');
+      if (wantsSpecialist) {
+          // Populate contact info
+          document.getElementById('userName').textContent = formData.name.split(' ')[0];
+          document.getElementById('userEmail').textContent = formData.email;
+          document.getElementById('userPhone').textContent = formData.phone;
+          contactSection.style.display = 'block';
+      } else {
+          contactSection.innerHTML = `
+              <h3>📧 Ghidul PDF a fost trimis!</h3>
+              <p>Vei primi în scurt timp la adresa <strong>${formData.email}</strong> ghidul complet "Cum alegi o asigurare potrivită fără să fii păcălit".</p>
+              <p style="margin-top: 20px;">Dacă îți schimbi părerea și vrei să vorbești cu un specialist, ne poți contacta oricând!</p>
+          `;
+      }
+
+      // Scroll to results
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Initialize progress
+  updateProgress();
 </script>
 </body>
 </html>
